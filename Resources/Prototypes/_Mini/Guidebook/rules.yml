@@ -7,31 +7,29 @@
   children:
   - DefaultRule0
   - DefaultRule1
-  - DefaultRule11
-  - DefaultRule12
   - DefaultRule2
   - DefaultRule21
+  - DefaultRule22
+  - DefaultRule23
+  - DefaultRule24
   - DefaultRule3
-  - DefaultRule31
-  - DefaultRule32
-  - DefaultRule33
-  - DefaultRule34
-  - DefaultRule35
-  - DefaultRule36
-  - DefaultRule37
-  - DefaultRule38
   - DefaultRule4
-  - DefaultRule41
-  - DefaultRule42
-  - DefaultRule43
-  - DefaultRule44
   - DefaultRule5
   - DefaultRule51
   - DefaultRule52
   - DefaultRule53
   - DefaultRule6
+  - DefaultRule61
+  - DefaultRule62
   - DefaultRule7
+  - DefaultRule71
+  - DefaultRule72
+  - DefaultRule73
+  - DefaultRule74
   - DefaultRule8
+  - DefaultRule81
+  - DefaultRule82
+  - DefaultRule83
   - DefaultRule9
   - DefaultRule91
   - DefaultRule92
@@ -52,20 +50,6 @@
   text: "/ServerInfo/_Mini/ServerRules/DefaultRule1.xml"
 
 - type: guideEntry
-  id: DefaultRule11
-  name: Правило 1.1
-  priority: 3
-  ruleEntry: true
-  text: "/ServerInfo/_Mini/ServerRules/DefaultRule11.xml"
-
-- type: guideEntry
-  id: DefaultRule12
-  name: Правило 1.2
-  priority: 4
-  ruleEntry: true
-  text: "/ServerInfo/_Mini/ServerRules/DefaultRule12.xml"
-
-- type: guideEntry
   id: DefaultRule2
   name: Правило 2
   priority: 5
@@ -80,6 +64,27 @@
   text: "/ServerInfo/_Mini/ServerRules/DefaultRule21.xml"
 
 - type: guideEntry
+  id: DefaultRule22
+  name: Правило 2.2
+  priority: 6
+  ruleEntry: true
+  text: "/ServerInfo/_Mini/ServerRules/DefaultRule22.xml"
+
+- type: guideEntry
+  id: DefaultRule23
+  name: Правило 2.3
+  priority: 6
+  ruleEntry: true
+  text: "/ServerInfo/_Mini/ServerRules/DefaultRule23.xml"
+
+- type: guideEntry
+  id: DefaultRule24
+  name: Правило 2.4
+  priority: 6
+  ruleEntry: true
+  text: "/ServerInfo/_Mini/ServerRules/DefaultRule24.xml"
+
+- type: guideEntry
   id: DefaultRule3
   name: Правило 3
   priority: 8
@@ -87,95 +92,11 @@
   text: "/ServerInfo/_Mini/ServerRules/DefaultRule3.xml"
 
 - type: guideEntry
-  id: DefaultRule31
-  name: Правило 3.1
-  priority: 9
-  ruleEntry: true
-  text: "/ServerInfo/_Mini/ServerRules/DefaultRule31.xml"
-
-- type: guideEntry
-  id: DefaultRule32
-  name: Правило 3.2
-  priority: 10
-  ruleEntry: true
-  text: "/ServerInfo/_Mini/ServerRules/DefaultRule32.xml"
-
-- type: guideEntry
-  id: DefaultRule33
-  name: Правило 3.3
-  priority: 11
-  ruleEntry: true
-  text: "/ServerInfo/_Mini/ServerRules/DefaultRule33.xml"
-
-- type: guideEntry
-  id: DefaultRule34
-  name: Правило 3.4
-  priority: 12
-  ruleEntry: true
-  text: "/ServerInfo/_Mini/ServerRules/DefaultRule34.xml"
-
-- type: guideEntry
-  id: DefaultRule35
-  name: Правило 3.5
-  priority: 13
-  ruleEntry: true
-  text: "/ServerInfo/_Mini/ServerRules/DefaultRule35.xml"
-
-- type: guideEntry
-  id: DefaultRule36
-  name: Правило 3.6
-  priority: 14
-  ruleEntry: true
-  text: "/ServerInfo/_Mini/ServerRules/DefaultRule36.xml"
-
-- type: guideEntry
-  id: DefaultRule37
-  name: Правило 3.7
-  priority: 15
-  ruleEntry: true
-  text: "/ServerInfo/_Mini/ServerRules/DefaultRule37.xml"
-
-- type: guideEntry
-  id: DefaultRule38
-  name: Правило 3.8
-  priority: 16
-  ruleEntry: true
-  text: "/ServerInfo/_Mini/ServerRules/DefaultRule38.xml"
-
-- type: guideEntry
   id: DefaultRule4
   name: Правило 4
   priority: 17
   ruleEntry: true
   text: "/ServerInfo/_Mini/ServerRules/DefaultRule4.xml"
-
-- type: guideEntry
-  id: DefaultRule41
-  name: Правило 4.1
-  priority: 18
-  ruleEntry: true
-  text: "/ServerInfo/_Mini/ServerRules/DefaultRule41.xml"
-
-- type: guideEntry
-  id: DefaultRule42
-  name: Правило 4.2
-  priority: 19
-  ruleEntry: true
-  text: "/ServerInfo/_Mini/ServerRules/DefaultRule42.xml"
-
-- type: guideEntry
-  id: DefaultRule43
-  name: Правило 4.3
-  priority: 20
-  ruleEntry: true
-  text: "/ServerInfo/_Mini/ServerRules/DefaultRule43.xml"
-
-- type: guideEntry
-  id: DefaultRule44
-  name: Правило 4.4
-  priority: 21
-  ruleEntry: true
-  text: "/ServerInfo/_Mini/ServerRules/DefaultRule44.xml"
 
 - type: guideEntry
   id: DefaultRule5
@@ -212,6 +133,21 @@
   ruleEntry: true
   text: "/ServerInfo/_Mini/ServerRules/DefaultRule6.xml"
 
+
+- type: guideEntry
+  id: DefaultRule61
+  name: Правило 61
+  priority: 26
+  ruleEntry: true
+  text: "/ServerInfo/_Mini/ServerRules/DefaultRule61.xml"
+
+- type: guideEntry
+  id: DefaultRule62
+  name: Правило 62
+  priority: 26
+  ruleEntry: true
+  text: "/ServerInfo/_Mini/ServerRules/DefaultRule62.xml"
+
 - type: guideEntry
   id: DefaultRule7
   name: Правило 7
@@ -220,11 +156,60 @@
   text: "/ServerInfo/_Mini/ServerRules/DefaultRule7.xml"
 
 - type: guideEntry
+  id: DefaultRule71
+  name: Правило 71
+  priority: 27
+  ruleEntry: true
+  text: "/ServerInfo/_Mini/ServerRules/DefaultRule71.xml"
+
+- type: guideEntry
+  id: DefaultRule72
+  name: Правило 72
+  priority: 27
+  ruleEntry: true
+  text: "/ServerInfo/_Mini/ServerRules/DefaultRule72.xml"
+
+- type: guideEntry
+  id: DefaultRule73
+  name: Правило 73
+  priority: 27
+  ruleEntry: true
+  text: "/ServerInfo/_Mini/ServerRules/DefaultRule73.xml"
+
+- type: guideEntry
+  id: DefaultRule74
+  name: Правило 74
+  priority: 27
+  ruleEntry: true
+  text: "/ServerInfo/_Mini/ServerRules/DefaultRule74.xml"
+
+- type: guideEntry
   id: DefaultRule8
   name: Правило 8
   priority: 28
   ruleEntry: true
   text: "/ServerInfo/_Mini/ServerRules/DefaultRule8.xml"
+
+- type: guideEntry
+  id: DefaultRule81
+  name: Правило 81
+  priority: 28
+  ruleEntry: true
+  text: "/ServerInfo/_Mini/ServerRules/DefaultRule81.xml"
+
+- type: guideEntry
+  id: DefaultRule82
+  name: Правило 82
+  priority: 28
+  ruleEntry: true
+  text: "/ServerInfo/_Mini/ServerRules/DefaultRule82.xml"
+
+- type: guideEntry
+  id: DefaultRule83
+  name: Правило 83
+  priority: 28
+  ruleEntry: true
+  text: "/ServerInfo/_Mini/ServerRules/DefaultRule83.xml"
 
 - type: guideEntry
   id: DefaultRule9

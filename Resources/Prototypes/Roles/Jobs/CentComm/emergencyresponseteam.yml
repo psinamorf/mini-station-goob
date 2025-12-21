@@ -9,6 +9,8 @@
   icon: "JobIconNanotrasen"
   supervisors: job-supervisors-centcom
   canBeAntag: false
+  skills: # CorvaxGoob-Skills
+  - All
   accessGroups:
   - AllAccess
   access:
@@ -19,16 +21,6 @@
   special: # Goobstation
   - !type:AddImplantSpecial
     implants: [ MindShieldImplant, FreedomImplant, BluespaceLifelineImplant, RadioImplantCentcomm, NutrimentPumpImplant, StypticStimulatorImplant, DeathRattleImplantCentcomm ]
-  - !type:AddComponentSpecial
-    components:
-    - type: Skills # CorvaxGoob-Skills
-      skills:
-      - ShuttleControl
-      - Shooting
-      - AdvancedBuilding
-      - Surgery
-      - MedicalEquipment
-      - Butchering
 
 - type: startingGear
   id: ERTLeaderGear
@@ -76,8 +68,8 @@
     - MedkitCombatFilled # Goobstation - No reason not to.
     - BoxZiptie
     - CrowbarRed
-    - ERTSecurityUndeterminedWeapon
     # Goobstation - MagazineMagnum
+    - PinpointerNuclear
     - MagazineMagnum
     - ADTBaseUplinkBOBERT
     #- WeaponLauncherMGL
@@ -104,6 +96,7 @@
   - !type:AddComponentSpecial
     components:
     - type: BibleUser #Lets them heal with bibles
+    - type: CurseImmune # Goobstation - Wraith
     - type: CanEnchant #GoobStation
   - !type:AddImplantSpecial
      implants: [ MindShieldImplant, FreedomImplant, BluespaceLifelineImplant, RadioImplantCentcomm, NutrimentPumpImplant, StypticStimulatorImplant, DeathRattleImplantCentcomm ]
@@ -220,6 +213,7 @@
     - SheetPlasteel
     - SheetSteel
     - SheetGlass
+    - PinpointerNuclear
 
 - type: startingGear
   id: ERTEngineerGearEVA
@@ -249,6 +243,7 @@
     - SheetPlasteel
     - SheetSteel
     - SheetGlass
+    - PinpointerNuclear
 
 - type: chameleonOutfit
   id: ERTEngineerChameleonOutfit

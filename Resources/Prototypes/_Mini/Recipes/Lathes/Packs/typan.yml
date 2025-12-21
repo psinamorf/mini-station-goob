@@ -192,12 +192,12 @@
   - IngotSilver1
   - MaterialBananium1
   - MaterialDiamond
+  - SheetUranium1
 
 - type: latheRecipePack
   id: TypanAdvancedSmelting
   recipes:
   - SheetPlasteel1
-  - SheetPlastitanium1
   - SheetUGlass1
   - SheetRUGlass1
 
@@ -253,7 +253,7 @@
   - ClothingUniformJumpskirtTypanCommunicationsOfficer
   - ClothingUniformJumpskirtTypanMedic
   - ClothingUniformJumpskirtTypanParamedic
-  - ClothingUniformJumpskirtTypanPatrol
+  # - ClothingUniformJumpskirtTypanPatrol
   - ClothingUniformJumpskirtTypanResearchDirector
   - ClothingUniformJumpskirtTypanResearcher
   - ClothingUniformJumpskirtTypanTechnician
@@ -266,7 +266,7 @@
   - ClothingOuterTypanCoatLabResearcher
   - ClothingOuterApronTypanBotanist
   - ClothingOuterApronTypanChef
-  - ClothingOuterJacketTypanChef
+  # - ClothingOuterJacketTypanChef
   - ClothingBackpackSatchelTypan
   - ClothingBackpackSyndicate
   - ClothingBackpackDuffelSyndicate

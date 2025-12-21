@@ -32,10 +32,11 @@
                         <BoxContainer Orientation="Horizontal" MinSize="0 40" HorizontalAlignment="Center">
                             <Button Name="Rules" Text="{Loc 'server-info-rules-button'}" MinSize="125 10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
                             <Button Name="Guidebook" Text="{Loc 'server-info-guidebook-button'}" MinSize="125 10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-                            <changelog:ChangelogButton Name="Changelog" MinSize="125 10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                            <Button Access="Public" Name="RoadmapButton" MinSize="125 10" Text="{Loc 'roadmap-name'}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" StyleClasses="Caution" />
                             <vote:VoteCallMenuButton Name="CallVoteButton" MinSize="125 10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                            <!-- <Button Name="Wiki" Text="Вики" MinSize="125 10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/> -->
                             <controls:VSpacer Spacing="25"/>
-                            <TextureRect TextureScale="0.18 0.18" Stretch="KeepCentered" TexturePath="/Textures/Interface/main_logo.png" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                            <TextureRect TextureScale="0.2 0.2" Stretch="KeepCentered" TexturePath="/Textures/Interface/main_logo.png" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
                             <controls:VSpacer Spacing="25"/>
                             <Button Name="Boosty" Text="Бусти" MinSize="125 10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
                             <Button Name="Discord" Text="Дискорд" MinSize="125 10" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
@@ -50,10 +51,10 @@
             <PanelContainer Name="BottomContainer" StyleClasses="LobbyBackground" MinHeight="500" HorizontalExpand="True" VerticalExpand="True">
                 <BoxContainer Orientation="Horizontal" HorizontalExpand="True" VerticalExpand="True" HorizontalAlignment="Stretch" Margin="0">
                     <!-- Left Panel  -->
-                    <PanelContainer Name="LeftPanel" MinWidth="400" MaxWidth="500" StyleClasses="LobbyBackground" HorizontalExpand="True" VerticalExpand="True">
+                    <PanelContainer Name="LeftPanel" MinWidth="300" StyleClasses="LobbyBackground" HorizontalExpand="True" VerticalExpand="True">
                         <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" Margin="8 8 8 8" VerticalAlignment="Stretch">
                             <BoxContainer Orientation="Horizontal" HorizontalExpand="True" Margin="8 8 8 8">
-                                <info:ServerInfo Name="ServerInfo" Access="Public" MinSize="0 30" VerticalExpand="True" HorizontalExpand="True" HorizontalAlignment="Stretch"/>
+                                <info:ServerInfo Name="ServerInfo" Access="Public" MinSize="0 30" VerticalExpand="True" HorizontalExpand="False" HorizontalAlignment="Stretch"/>
                             </BoxContainer>
                             <Label Name="StationTime" Access="Public" FontColorOverride="{x:Static maths:Color.LightGray}" HorizontalAlignment="Left"/>
                             <controls:HLine Color="#404040" Thickness="1" Margin="0 5"/>
@@ -61,24 +62,25 @@
                         </BoxContainer>
                     </PanelContainer>
                     <!-- Center Panel -->
-                    <PanelContainer Name="CenterPanel" StyleClasses="LobbyBackground" MinWidth="400" HorizontalExpand="True" VerticalExpand="True">
+                    <PanelContainer Name="CenterPanel" StyleClasses="LobbyBackground" MinWidth="300" HorizontalExpand="True" VerticalExpand="True">
                         <BoxContainer Orientation="Vertical" HorizontalExpand="True" VerticalExpand="True" VerticalAlignment="Center" HorizontalAlignment="Center">
                             <controls:StripeBack Name="StripeBack" Access="Public">
-                                <Label Name="StartTime" Access="Public" Align="Center" FontColorOverride="{x:Static maths:Color.DarkGray}" StyleClasses="LabelBig" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                <Label Name="StartTime" MaxWidth="250" Access="Public" Align="Center" FontColorOverride="{x:Static maths:Color.DarkGray}" StyleClasses="LabelBig" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </controls:StripeBack>
                             <lobbyUi:LobbyCharacterPreviewPanel Name="CharacterPreview" Access="Public" Visible="True"/>
                             <Button Name="ReadyButton" Access="Public" ToggleMode="True" Text="{Loc 'ui-lobby-ready-up-button'}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinSize="250 50"/>
                             <cc:UICommandButton Command="observe" Name="ObserveButton" Access="Public" Text="{Loc 'ui-lobby-observe-button'}" WindowType="{x:Type lobbyUi:ObserveWarningWindow}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinSize="250 50"/>
                             <Button Name="CharacterSetup" Access="Public" Text="{Loc 'lobby-character-preview-panel-character-setup-button'}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinSize="250 50"/>
                             <Button Name="OptionsButton" Access="Public" Text="{Loc 'ui-lobby-options-button'}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinSize="250 50"/>
-                            <Button Name="AuthorizationDiscordButton" Access="Public" Text="Авторизация" MinSize="250 50"/>
-                            <Button Name="LeaveButton" Access="Public" Text="{Loc 'ui-lobby-leave-button'}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinSize="250 50" />
+                            <Button Name="AuthorizationDiscordButton" StyleClasses="ButtonColorYellow" Access="Public" Text="Авторизация" MinSize="250 50"/>
+                            <Button Name="LeaveButton" StyleClasses="ButtonColorRed" Access="Public" Text="{Loc 'ui-lobby-leave-button'}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MinSize="250 50" />
                         </BoxContainer>
                     </PanelContainer>
                     <!-- Right Panel - Chat -->
-                    <PanelContainer StyleClasses="LobbyBackground" Name="RightPanel" MinWidth="400" HorizontalExpand="True" VerticalExpand="True">
-                        <BoxContainer Orientation="Vertical" MinWidth="400" VerticalExpand="True" HorizontalExpand="True" HorizontalAlignment="Stretch" Margin="8 8 8 8">
-                            <widgets:ChatBox Name="Chat" Access="Public" MinWidth="375" VerticalExpand="True" Margin="3 3 3 3" HorizontalExpand="False" HorizontalAlignment="Stretch"/>
+                    <PanelContainer StyleClasses="LobbyBackground" Name="RightPanel" MinWidth="300" HorizontalExpand="True" VerticalExpand="True">
+                        <BoxContainer Orientation="Vertical" MinWidth="300" VerticalExpand="True" HorizontalExpand="True" HorizontalAlignment="Stretch" Margin="8 8 8 8">
+                            <lobbyUi:ServerListBox Name="ServerListBox" Access="Public" MinSize="0 160" VerticalExpand="False" HorizontalExpand="True" Margin="3 3 3 3" HorizontalAlignment="Stretch"/>
+                            <widgets:ChatBox Name="Chat" Access="Public" MinWidth="300" VerticalExpand="True" Margin="3 3 3 3" HorizontalExpand="False" HorizontalAlignment="Stretch"/>
                         </BoxContainer>
                     </PanelContainer>
                 </BoxContainer>

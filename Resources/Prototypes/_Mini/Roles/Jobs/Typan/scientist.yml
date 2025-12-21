@@ -15,13 +15,18 @@
   - TypanScience
   - SyndicateAgent
   - TypanMaint
+  skills: # CorvaxGoob-Skills
+    - Shooting
+    - Surgery
+    - MedicalEquipment
+    - AdvancedBuilding
   special:
   - !type:AddComponentSpecial
     components:
-      - type: Skills # Corvax-Next-Skills
-        skills:
-        - AdvancedBuilding
-
+      - type: AntagImmune
+      - type: NpcFactionMember
+        factions:
+        - Typan
 - type: startingGear
   id: TypanScience
   equipment:

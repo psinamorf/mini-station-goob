@@ -48,8 +48,8 @@
 
 - type: ttsVoice
   id: Oleg
-  name: tts-voice-name-oleg
-  sex: Male
+  name: Даша
+  sex: Female
   speaker: oleg
 
 - type: ttsVoice

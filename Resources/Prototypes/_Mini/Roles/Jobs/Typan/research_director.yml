@@ -22,12 +22,20 @@
   - TypanExternal
   - TypanEngineering
   - TypanMaint
+  - TypanCargo
+  skills: # CorvaxGoob-Skills
+    - Shooting
+    - Butchering
+    - Surgery
+    - MedicalEquipment
+    - AdvancedBuilding
   special:
   - !type:AddComponentSpecial
     components:
-      - type: Skills # Corvax-Next-Skills
-        skills:
-        - AdvancedBuilding
+      - type: AntagImmune
+      - type: NpcFactionMember
+        factions:
+        - Typan
 
 - type: startingGear
   id: TypanResearchDirector

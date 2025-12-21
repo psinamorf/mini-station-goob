@@ -293,7 +293,7 @@
     - to: glassAirlock
       completed:
       - !type:GivePrototype
-        prototype: SheetPlastitanium1
+        prototype: SheetPlasteel1
         amount: 2
       conditions:
       - !type:WirePanel {}
@@ -306,7 +306,7 @@
     - to: airlock
       completed:
       - !type:GivePrototype
-        prototype: SheetPlastitanium1
+        prototype: SheetPlasteel1
         amount: 2
       conditions:
       - !type:WirePanel {}
@@ -319,7 +319,7 @@
     - to: highSecDoor
       completed:
       - !type:GivePrototype
-        prototype: SheetPlastitanium1
+        prototype: SheetPlasteel1
         amount: 2
       conditions:
       - !type:WirePanel {}
@@ -394,7 +394,7 @@
     - to: maxSecurity
       completed:
       - !type:GivePrototype
-        prototype: SheetPlastitanium1
+        prototype: SheetPlasteel1
         amount: 2
       conditions:
       - !type:WirePanel {}

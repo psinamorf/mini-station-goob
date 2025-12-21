@@ -55,6 +55,7 @@
   # - MagazineLightRifleEmpty # Goobstation - remove light rifle
   - MagazinePistol
   - MagazinePistolEmpty
+  - MagazineMagnumAntimaterial
   - MagazinePistolSubMachineGun
   - MagazinePistolSubMachineGunEmpty
   - MagazinePistolSubMachineGunTopMounted
@@ -146,8 +147,6 @@
   - WeaponLaserCarbine
   - WeaponXrayCannon
   - WeaponTemperatureGun # Goobstation
-  - PolymerBaton #goob
-  - SpearTelescopic #goob
 
 - type: latheRecipePack
   id: SecurityDisablers

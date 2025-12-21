@@ -25,13 +25,17 @@
   - TypanVault
   - TypanExternal
   - SyndicateAgent
+  skills: # CorvaxGoob-Skills
+    - ShuttleControl
+    - Shooting
+    - MedicalEquipment
   special:
   - !type:AddComponentSpecial
     components:
-      - type: Skills # Corvax-Next-Skills
-        skills:
-        - ShuttleControl
-        - Shooting
+      - type: AntagImmune
+      - type: NpcFactionMember
+        factions:
+        - Typan
 
 - type: startingGear
   id: TypanPatrol

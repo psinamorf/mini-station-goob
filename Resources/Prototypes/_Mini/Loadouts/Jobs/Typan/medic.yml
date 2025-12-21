@@ -13,7 +13,7 @@
 # Loadout Groups
 - type: loadoutGroup
   id: TypanMedicUniform
-  name: loadout-group-taipan-medic-uniform
+  name: loadout-group-typan-medic-uniform
   hidden: true
   minLimit: 1
   loadouts:

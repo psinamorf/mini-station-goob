@@ -34,7 +34,7 @@ using Robust.Client.Graphics;
 using Robust.Client.UserInterface.XAML;
 using Robust.Client.UserInterface.Controls;
 using Robust.Shared.Timing;
-using System.Globalization;
+// using System.Globalization;
 
 namespace Content.Client.PDA
 {
@@ -44,6 +44,7 @@ namespace Content.Client.PDA
         [Dependency] private readonly IClipboardManager _clipboard = null!;
         [Dependency] private readonly IGameTiming _gameTiming = default!;
         [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
+        [Dependency] private readonly ILocalizationManager _locMan = default!; // CorvaxGoob-custom-alert-instructions-in-pda // I made this for no warning by me
         private readonly ClientGameTicker _gameTicker;
 
         public const int HomeView = 0;
@@ -58,7 +59,6 @@ namespace Content.Client.PDA
         private string _stationName = Loc.GetString("comp-pda-ui-unknown");
         private string _alertLevel = Loc.GetString("comp-pda-ui-unknown");
         private string _instructions = Loc.GetString("comp-pda-ui-unknown");
-
 
         private int _currentView;
 
@@ -192,49 +192,69 @@ namespace Content.Client.PDA
             StationNameLabel.SetMarkup(Loc.GetString("comp-pda-ui-station",
                 ("station", _stationName)));
 
-
             var stationTime = _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
 
             StationTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-station-time",
                 ("time", stationTime.ToString("hh\\:mm\\:ss"))));
 
-            //mini edit
-            if (state.IsRoundEndRequested)
-            {
-                var diff1 = MathHelper.Max((state.ExpectedCountdownEnd - _gameTiming.CurTime) ?? TimeSpan.Zero, TimeSpan.Zero);
-                var diff2 = MathHelper.Max((state.ShuttleDockTime + state.ExpectedCountdownEnd - _gameTiming.CurTime) ?? TimeSpan.Zero, TimeSpan.Zero);
-                if (diff1 != TimeSpan.Zero)
-                {
-                    EvacTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-evac-time",
-                    ("time", diff1.ToString("hh\\:mm\\:ss", CultureInfo.CurrentCulture))));
-                }
-                else if (diff2 != TimeSpan.Zero)
-                {
-                    EvacTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-evac-docked",
-                    ("time", diff2.ToString("hh\\:mm\\:ss", CultureInfo.CurrentCulture))));
-                }
-                else
-                {
-                    EvacTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-evac-not-called"));
-                }
-            }
-            else
-            {
-                EvacTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-evac-not-called"));
-            }
-            //mini edit
+            // //mini edit
+            // if (state.IsRoundEndRequested)
+            // {
+            //     var diff1 = MathHelper.Max((state.ExpectedCountdownEnd - _gameTiming.CurTime) ?? TimeSpan.Zero, TimeSpan.Zero);
+            //     var diff2 = MathHelper.Max((state.ShuttleDockTime + state.ExpectedCountdownEnd - _gameTiming.CurTime) ?? TimeSpan.Zero, TimeSpan.Zero);
+            //     if (diff1 != TimeSpan.Zero)
+            //     {
+            //         EvacTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-evac-time",
+            //         ("time", diff1.ToString("hh\\:mm\\:ss", CultureInfo.CurrentCulture))));
+            //     }
+            //     else if (diff2 != TimeSpan.Zero)
+            //     {
+            //         EvacTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-evac-docked",
+            //         ("time", diff2.ToString("hh\\:mm\\:ss", CultureInfo.CurrentCulture))));
+            //     }
+            //     else
+            //     {
+            //         EvacTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-evac-not-called"));
+            //     }
+            // }
+            // else
+            // {
+            //     EvacTimeLabel.SetMarkup(Loc.GetString("comp-pda-ui-evac-not-called"));
+            // }
+            // //mini edit
 
             var alertLevel = state.PdaOwnerInfo.StationAlertLevel;
             var alertColor = state.PdaOwnerInfo.StationAlertColor;
-            var alertLevelKey = alertLevel != null ? $"alert-level-{alertLevel}" : "alert-level-unknown";
-            _alertLevel = Loc.GetString(alertLevelKey);
+            // CorvaxGoob-custom-alert-instructions-in-pda-start
+            var alertInstructions = state.PdaOwnerInfo.StationAlertInstructions;
+            if (alertLevel != null)
+            {
+                if (_locMan.TryGetString($"alert-level-{alertLevel}", out var locName))
+                    _alertLevel = locName;
+                else
+                    _alertLevel = alertLevel;
+            }
+            else
+                _alertLevel = Loc.GetString("alert-level-unknown");
 
             StationAlertLevelLabel.SetMarkup(Loc.GetString(
                 "comp-pda-ui-station-alert-level",
                 ("color", alertColor),
                 ("level", _alertLevel)
             ));
-            _instructions = Loc.GetString($"{alertLevelKey}-instructions");
+
+            if (alertInstructions != null)
+                if (alertInstructions == String.Empty)
+                    if (_locMan.TryGetString($"alert-level-{alertLevel}-instructions", out var locInstruction))
+                        _instructions = locInstruction;
+                    else
+                        _instructions = Loc.GetString("alert-level-unknown-instructions");
+                else
+                    _instructions = alertInstructions;
+            else
+                _instructions = Loc.GetString("alert-level-unknown-instructions");
+            // CorvaxGoob-custom-alert-instructions-in-pda-end
+
             StationAlertLevelInstructions.SetMarkup(Loc.GetString(
                 "comp-pda-ui-station-alert-level-instructions",
                 ("instructions", _instructions))

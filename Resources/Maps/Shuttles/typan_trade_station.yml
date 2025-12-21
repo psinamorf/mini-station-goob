@@ -4,8 +4,8 @@ meta:
   engineVersion: 264.0.0
   forkId: ""
   forkVersion: ""
-  time: 10/15/2025 22:27:54
-  entityCount: 905
+  time: 10/30/2025 07:45:44
+  entityCount: 914
 maps: []
 grids:
 - 2
@@ -4343,6 +4343,35 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 2.5,-5.5
       parent: 2
+  - uid: 771
+    components:
+    - type: Transform
+      rot: 1.5707963267948966 rad
+      pos: 0.5,-10.5
+      parent: 2
+  - uid: 774
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 10.5,-10.5
+      parent: 2
+  - uid: 775
+    components:
+    - type: Transform
+      pos: 0.5,2.5
+      parent: 2
+  - uid: 776
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 10.5,2.5
+      parent: 2
+  - uid: 777
+    components:
+    - type: Transform
+      rot: 3.141592653589793 rad
+      pos: 6.5,-11.5
+      parent: 2
 - proto: RailingCornerSmall
   entities:
   - uid: 9
@@ -5656,12 +5685,37 @@ entities:
       parent: 2
     - type: WarpPoint
       location: Торговый аванпост Тайпана
-- proto: WeaponTurretSyndicateBroken
+- proto: WeaponTurretLaserTypan
   entities:
   - uid: 290
     components:
     - type: Transform
+      rot: -1.5707963267948966 rad
       pos: 6.5,-11.5
+      parent: 2
+  - uid: 767
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,2.5
+      parent: 2
+  - uid: 768
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 10.5,2.5
+      parent: 2
+  - uid: 769
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 10.5,-10.5
+      parent: 2
+  - uid: 770
+    components:
+    - type: Transform
+      rot: -1.5707963267948966 rad
+      pos: 0.5,-10.5
       parent: 2
 - proto: Windoor
   entities:

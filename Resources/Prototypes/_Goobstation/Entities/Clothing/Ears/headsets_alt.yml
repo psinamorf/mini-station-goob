@@ -28,6 +28,9 @@
   parent: [ClothingHeadsetAltSyndicate, ClothingHeadsetAltLoudspeaker]
   id: ClothingHeadsetAltSyndicateCommander
   name: blood-red commander over-ear headset
+  components:
+  - type: Headset
+    color: "#732123"
 
 - type: entity
   parent: ClothingHeadset
@@ -67,6 +70,8 @@
     sprite: _Goobstation/Clothing/Ears/Headsets/warden.rsi
   - type: Clothing
     sprite: _Goobstation/Clothing/Ears/Headsets/warden.rsi
+  - type: Headset
+    color: "#bc1515"
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCentcommContraband]
@@ -84,6 +89,8 @@
     sprite: _Goobstation/Clothing/Ears/Headsets/deathsquad.rsi
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
+  - type: Headset
+    color: "#fcdf03"
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseSecurityContraband]
@@ -99,6 +106,8 @@
     sprite: Clothing/Ears/Headsets/security.rsi
   - type: Clothing
     sprite: Clothing/Ears/Headsets/security.rsi
+  - type: Headset
+    color: "#bc1515"
 
 - type: entity
   parent: [ClothingHeadsetAlt, BaseCentcommContraband]
@@ -115,3 +124,20 @@
     sprite: _Goobstation/Clothing/Ears/Headsets/blueshield.rsi
   - type: Clothing
     sprite: _Goobstation/Clothing/Ears/Headsets/blueshield.rsi
+  - type: Headset
+    color: "#fcdf03"
+
+- type: entity
+  parent: ClothingHeadsetCommand
+  id: ClothingHeadsetCommandService
+  name: command-service headset
+  description: A headset with a command and service channels.
+  components:
+  - type: ContainerFill
+    containers:
+      key_slots:
+      - EncryptionKeyCommand
+      - EncryptionKeyService
+      - EncryptionKeyCommon
+  - type: Headset
+    color: "#fcdf03"

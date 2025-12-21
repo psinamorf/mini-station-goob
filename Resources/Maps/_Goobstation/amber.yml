@@ -1,11 +1,11 @@
 meta:
   format: 7
   category: Map
-  engineVersion: 262.0.0
+  engineVersion: 264.0.0
   forkId: ""
   forkVersion: ""
-  time: 08/24/2025 07:16:51
-  entityCount: 23523
+  time: 12/20/2025 00:55:45
+  entityCount: 23524
 maps:
 - 1
 grids:
@@ -474,6 +474,11 @@ entities:
     - type: OccluderTree
     - type: SpreaderGrid
     - type: Shuttle
+      dampingModifiers:
+        Cruise: 0.0075
+        Dampen: 0.25
+        Anchor: 2
+        None: 0.25
       dampingModifier: 0.25
     - type: GridPathfinding
     - type: Gravity
@@ -15002,6 +15007,7 @@ entities:
     - type: RadiationGridResistance
     - type: NavMap
     - type: ImplicitRoof
+    - type: FTLDrive
 - proto: AcousticGuitarInstrument
   entities:
   - uid: 10313
@@ -15013,6 +15019,13 @@ entities:
     components:
     - type: Transform
       pos: -58.50044,23.5087
+      parent: 2
+- proto: ADTComputerBotanicalSeedDNAManipulator
+  entities:
+  - uid: 3333
+    components:
+    - type: Transform
+      pos: -13.5,-30.5
       parent: 2
 - proto: AirAlarm
   entities:
@@ -19115,7 +19128,7 @@ entities:
       pos: -25.5,-25.5
       parent: 2
     - type: Door
-      secondsUntilStateChange: -1354.7659
+      secondsUntilStateChange: -1424.3989
       state: Opening
     - type: DeviceLinkSource
       lastSignals:
@@ -56131,6 +56144,13 @@ entities:
     - type: Transform
       pos: 39.470306,-67.50273
       parent: 2
+- proto: CaptainDrobe
+  entities:
+  - uid: 23337
+    components:
+    - type: Transform
+      pos: -24.5,-55.5
+      parent: 2
 - proto: CarbonDioxideCanister
   entities:
   - uid: 1457
@@ -66546,8 +66566,8 @@ entities:
           restitution: 0
           friction: 0.4
     - type: EntityStorage
-      open: True
       removedMasks: 20
+      open: True
     - type: PlaceableSurface
       isPlaceable: True
   - uid: 3241
@@ -73526,13 +73546,6 @@ entities:
     - type: Transform
       pos: -28.5,-50.5
       parent: 2
-- proto: DresserCaptainFilled
-  entities:
-  - uid: 23337
-    components:
-    - type: Transform
-      pos: -24.5,-55.5
-      parent: 2
 - proto: DresserChiefEngineerFilled
   entities:
   - uid: 2576
@@ -78243,7 +78256,7 @@ entities:
     - type: Transform
       pos: 31.391466,-35.205338
       parent: 2
-- proto: FoodDonutJellySlugcat
+- proto: FoodDonutJellyScurret
   entities:
   - uid: 3759
     components:
@@ -109687,12 +109700,6 @@ entities:
     - type: Transform
       pos: -14.5,-34.5
       parent: 2
-  - uid: 3333
-    components:
-    - type: Transform
-      rot: 3.141592653589793 rad
-      pos: -13.5,-30.5
-      parent: 2
   - uid: 3343
     components:
     - type: Transform
@@ -114628,13 +114635,6 @@ entities:
     components:
     - type: Transform
       pos: 13.541924,-10.43575
-      parent: 2
-- proto: PlushieBrizby
-  entities:
-  - uid: 4973
-    components:
-    - type: Transform
-      pos: 39.562862,-64.33146
       parent: 2
 - proto: PlushieDiona
   entities:
@@ -130539,6 +130539,18 @@ entities:
     components:
     - type: Transform
       pos: 0.5,-18.5
+      parent: 2
+- proto: SpawnPointVirologist
+  entities:
+  - uid: 4973
+    components:
+    - type: Transform
+      pos: -54.5,-29.5
+      parent: 2
+  - uid: 21735
+    components:
+    - type: Transform
+      pos: -54.5,-28.5
       parent: 2
 - proto: SpawnPointWarden
   entities:

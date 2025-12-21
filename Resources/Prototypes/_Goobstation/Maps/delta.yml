@@ -42,6 +42,7 @@
             Psychologist: [ 1, 1 ]
             Paramedic: [ 1, 1 ]
             Chemist: [ 2, 2 ]
+            Virologist: [ 2, 3 ]
             # science
             ResearchDirector: [ 1, 1 ]
             Scientist: [ 6, 7 ]

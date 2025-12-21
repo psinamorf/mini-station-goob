@@ -3,10 +3,8 @@
   id: TypanPatrolJumpsuit
   equipment:
     jumpsuit: ClothingUniformJumpsuitTypanPatrol
-
 - type: loadout
   id: TypanPatrolJumpskirt
-
   equipment:
     jumpsuit: ClothingUniformJumpskirtTypanPatrol
 

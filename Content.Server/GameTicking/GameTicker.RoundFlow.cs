@@ -74,6 +74,7 @@
 // SPDX-FileCopyrightText: 2025 Aiden <28298836+Aidenkrz@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 Leon Friedrich <60421075+ElectroJr@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 pathetic meowmeow <uhhadd@gmail.com>
+// SPDX-FileCopyrightText: 2025 RichardBlonski <48651647+RichardBlonski@users.noreply.github.com>
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
@@ -105,6 +106,14 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using System.Text.RegularExpressions;
+
+// Goob Station - End of Round Screen
+using Content.Goobstation.Common.LastWords;
+using Content.Shared.Damage;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
+using Content.Goobstation.Maths.FixedPoint;
+using Content.Goobstation.Shared.Mind.Components;
 
 namespace Content.Server.GameTicking
 {
@@ -649,6 +658,33 @@ namespace Content.Server.GameTicking
 
                 var roles = _roles.MindGetAllRoleInfo(mindId);
 
+                // Goobstation - End of round last words
+                #region Goob Station - End of round last words
+
+                var lastWords = "";
+                var mobState = MobState.Invalid;
+                var damagePerGroup = new Dictionary<string, FixedPoint2>();
+                var lastMob = TryComp<MindLastMobComponent>(mindId, out var lastMobComponent)
+                    ? lastMobComponent.LastMob
+                    : null;
+
+                // Get last words if they exist (stored on the mind)
+                if (TryComp<LastWordsComponent>(mindId, out var lastWordsComponent))
+                    lastWords = lastWordsComponent.LastWords;
+
+                // Get mob state and damage if the mob still exists
+                if (lastMob != null && !TerminatingOrDeleted(lastMob))
+                {
+                    if (TryComp<MobStateComponent>(lastMob, out var mobStateComp))
+                        mobState = mobStateComp.CurrentState;
+
+                    if (TryComp<DamageableComponent>(lastMob, out var damageableComp))
+                        damagePerGroup = damageableComp.DamagePerGroup;
+                }
+
+                #endregion
+                // END
+
                 var playerEndRoundInfo = new RoundEndMessageEvent.RoundEndPlayerInfo()
                 {
                     // Note that contentPlayerData?.Name sticks around after the player is disconnected.
@@ -665,7 +701,11 @@ namespace Content.Server.GameTicking
                     JobPrototypes = roles.Where(role => !role.Antagonist).Select(role => role.Prototype).ToArray(),
                     AntagPrototypes = roles.Where(role => role.Antagonist).Select(role => role.Prototype).ToArray(),
                     Observer = observer,
-                    Connected = connected
+                    Connected = connected,
+                    // Goob Station - End of Round Screen
+                    LastWords = lastWords,
+                    EntMobState = mobState,
+                    DamagePerGroup = damagePerGroup
                 };
                 listOfPlayerInfo.Add(playerEndRoundInfo);
             }
@@ -696,7 +736,7 @@ namespace Content.Server.GameTicking
             {
                 if (_webhookIdentifier == null)
                     return;
-
+                var playerCount = _playerManager.PlayerCount;
                 var duration = RoundDuration();
                 var gamemodeTitle = CurrentPreset != null ? Loc.GetString(CurrentPreset.ModeTitle) : string.Empty;
 
@@ -712,8 +752,8 @@ namespace Content.Server.GameTicking
                     ("minutes", duration.Minutes),
                     ("seconds", duration.Seconds),
                     ("gamemode", gamemodeTitle),
-                    ("manifest", manifest));
-
+                    ("manifest", manifest),
+                    ("playerCount", playerCount));
                 if (textEv.Text == String.Empty)
                 {
                     content = Loc.GetString("discord-round-notifications-end-no-manifest",
@@ -721,6 +761,7 @@ namespace Content.Server.GameTicking
                         ("hours", Math.Truncate(duration.TotalHours)),
                         ("minutes", duration.Minutes),
                         ("seconds", duration.Seconds),
+                        ("playerCount", playerCount),
                         ("gamemode", gamemodeTitle));
                 }
 
@@ -730,8 +771,7 @@ namespace Content.Server.GameTicking
 
                 if (DiscordRoundEndRole == null)
                     return;
-
-                content = Loc.GetString("discord-round-notifications-end-ping", ("roleId", DiscordRoundEndRole));
+                content = Loc.GetString("discord-round-notifications-end-ping", ("roleId", DiscordRoundEndRole), ("playerCount", playerCount));
                 payload = new WebhookPayload { Content = content };
                 payload.AllowedMentions.AllowRoleMentions();
 
@@ -796,8 +836,8 @@ namespace Content.Server.GameTicking
             {
                 if (_webhookIdentifier == null)
                     return;
-
-                var content = Loc.GetString("discord-round-notifications-new", ("roleId", DiscordRoundEndRole ?? "0"));
+                var playerCount = _playerManager.PlayerCount;
+                var content = Loc.GetString("discord-round-notifications-new", ("playerCount", playerCount), ("roleId", DiscordRoundEndRole ?? "0"));
 
                 var payload = new WebhookPayload { Content = content };
 
@@ -924,11 +964,14 @@ namespace Content.Server.GameTicking
             {
                 if (_webhookIdentifier == null)
                     return;
-
+                var playerCount = _playerManager.PlayerCount;
                 var mapName = _gameMapManager.GetSelectedMap()?.MapName ?? Loc.GetString("discord-round-notifications-unknown-map");
                 var gamemodeTitle = CurrentPreset != null ? Loc.GetString(CurrentPreset.ModeTitle) : string.Empty;
-                var content = Loc.GetString("discord-round-notifications-started", ("id", RoundId), ("map", mapName), ("gamemode", gamemodeTitle));
-
+                var content = Loc.GetString("discord-round-notifications-started",
+                    ("id", RoundId),
+                    ("map", mapName),
+                    ("gamemode", gamemodeTitle),
+                    ("playerCount", playerCount));
                 var payload = new WebhookPayload { Content = content };
 
                 await _discord.CreateMessage(_webhookIdentifier.Value, payload);

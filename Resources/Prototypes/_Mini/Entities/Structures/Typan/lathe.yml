@@ -1,6 +1,6 @@
 - type: entity
   id: AutolatheTypan
-  parent: BaseLatheLube
+  parent: [BaseLatheLube, BaseSiloUtilizer]
   name: автолат
   suffix: Тайпан
   description: Производит базовые изделия из металла и стекла. Имеет возможность обрабатывать чертежи для печати по новым рецептам.
@@ -74,7 +74,7 @@
 
 - type: entity
   id: ProtolatheTypan
-  parent: BaseLatheLube
+  parent: [BaseLatheLube, BaseSiloUtilizer]
   name: протолат
   suffix: Тайпан
   description: Преобразует сырьё в продвинутые предметы.
@@ -140,7 +140,7 @@
 
 - type: entity
   id: CircuitImprinterTypan
-  parent: BaseLatheLube
+  parent: [BaseLatheLube, BaseSiloUtilizer]
   name: принтер схем
   suffix: Тайпан
   description: Печатает платы для машин.
@@ -206,7 +206,7 @@
 
 - type: entity
   id: ExosuitFabricatorTypan
-  parent: BaseLatheLube
+  parent: [BaseLatheLube, BaseSiloUtilizer]
   name: фабрикатор экзокостюмов
   suffix: Тайпан
   description: Печатает запчасти для создания робототехники и других механизмов.
@@ -273,7 +273,6 @@
     - Scarves
     - Carpets
     - Bedsheets
-    - DoubleBedsheets
     dynamicPacks:
     - TypanSpecialClothing
     - TypanArmorVest
@@ -331,7 +330,7 @@
 
 - type: entity
   id: MedicalTechFabTypan
-  parent: BaseLatheLube
+  parent: [BaseLatheLube, BaseSiloUtilizer]
   name: медицинский техфаб
   suffix: Тайпан
   description: Печатает инветнарь для медицинского отсека.
@@ -371,7 +370,7 @@
 
 - type: entity
   id: WeaponryTechFabTypan
-  parent: BaseLatheLube
+  parent: [BaseLatheLube, BaseSiloUtilizer]
   name: оружейный техфаб
   suffix: Тайпан
   description: Печатает инвентарь для охранного отсека.
@@ -456,7 +455,7 @@
     - RGlassSmelting
 
 - type: entity
-  parent: OreProcessorTypan
+  parent: OreProcessorIndustrial
   id: OreProcessorIndustrialTypan
   name: промышленный переработчик руды
   description: Переработчик руды, разработанный специально для производства металлов в промышленных масштабах.

@@ -149,6 +149,7 @@ using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using static Robust.Client.UserInterface.StylesheetHelpers;
+using Content.Client.Stylesheets;
 
 namespace Content.Client.Stylesheets
 {
@@ -310,6 +311,7 @@ namespace Content.Client.Stylesheets
 
         //Background
         public const string StyleClassBackgroundBaseDark = "PanelBackgroundBaseDark";
+        public const string StyleClassBackgroundBaseLight = "PanelBackgroundBaseLight"; // Goob Station
 
         //Buttons
         public const string StyleClassCrossButtonRed = "CrossButtonRed";
@@ -420,6 +422,17 @@ namespace Content.Client.Stylesheets
             buttonStorage.SetContentMarginOverride(StyleBox.Margin.Horizontal, 4);
 
             var buttonContext = new StyleBoxTexture { Texture = Texture.White };
+
+            var backgroundTex = resCache.GetTexture("/Textures/Interface/Nano/lobby_b.png");
+            var background = new StyleBoxTexture
+            {
+                Texture = backgroundTex,
+                Mode = StyleBoxTexture.StretchMode.Tile
+            };
+
+            background.SetPatchMargin(StyleBox.Margin.All, 24);
+            background.SetExpandMargin(StyleBox.Margin.All, -4);
+            background.SetContentMarginOverride(StyleBox.Margin.All, 8);
 
             var buttonRectTex = resCache.GetTexture("/Textures/Interface/Nano/light_panel_background_bordered.png");
             var buttonRect = new StyleBoxTexture(BaseButton)
@@ -916,6 +929,13 @@ namespace Content.Client.Stylesheets
                 Element<ConfirmButton>()
                     .Pseudo(ConfirmButton.ConfirmPrefix + ContainerButton.StylePseudoClassDisabled)
                     .Prop(Control.StylePropertyModulateSelf, ButtonColorCautionDisabled),
+
+                new StyleRule(
+                    new SelectorElement(null, new[] {StyleClassLobbyBackground}, null, null),
+                    new[]
+                    {
+                        new StyleProperty(PanelContainer.StylePropertyPanel, background),
+                    }),
 
                 new StyleRule(new SelectorChild(
                     new SelectorElement(typeof(Button), null, null, new[] {ContainerButton.StylePseudoClassDisabled}),
@@ -1761,6 +1781,10 @@ namespace Content.Client.Stylesheets
                     .Prop("panel", new StyleBoxTexture(BaseButtonOpenBoth) { Padding = default })
                     .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#1F1F23")),
 
+                Element<PanelContainer>().Class("PanelBackgroundBaseLight") // Goob Station
+                    .Prop("panel", new StyleBoxTexture(BaseButtonOpenBoth) { Padding = default })
+                    .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#2d2d39")),
+
                 Element<PanelContainer>().Class("PanelBackgroundLight")
                     .Prop("panel", new StyleBoxTexture(BaseButtonOpenBoth) { Padding = default })
                     .Prop(Control.StylePropertyModulateSelf, Color.FromHex("#2F2F3B")),
@@ -2068,6 +2092,37 @@ namespace Content.Client.Stylesheets
                 Element<PanelContainer>()
                     .Class(StyleClassInset)
                     .Prop(PanelContainer.StylePropertyPanel, insetBack),
+
+            // Yellow Button Styles Integration
+            Element<Button>().Class(YellowButtonStyles.StyleClassButtonColorYellow)
+                .Prop(Control.StylePropertyModulateSelf, YellowButtonStyles.ButtonColorDefaultYellow),
+
+            Element<Button>().Class(YellowButtonStyles.StyleClassButtonColorYellow)
+                .Pseudo(ContainerButton.StylePseudoClassNormal)
+                .Prop(Control.StylePropertyModulateSelf, YellowButtonStyles.ButtonColorDefaultYellow),
+
+            Element<Button>().Class(YellowButtonStyles.StyleClassButtonColorYellow)
+                .Pseudo(ContainerButton.StylePseudoClassHover)
+                .Prop(Control.StylePropertyModulateSelf, YellowButtonStyles.ButtonColorHoveredYellow),
+
+            Element<Button>().Class(YellowButtonStyles.StyleClassButtonColorYellow)
+                .Pseudo(ContainerButton.StylePseudoClassPressed)
+                .Prop(Control.StylePropertyModulateSelf, YellowButtonStyles.ButtonColorPressedYellow),
+
+            Element<Button>().Class(YellowButtonStyles.StyleClassButtonColorYellow)
+                .Pseudo(ContainerButton.StylePseudoClassDisabled)
+                .Prop(Control.StylePropertyModulateSelf, YellowButtonStyles.ButtonColorDisabledYellow),
+
+            // Yellow button text color
+            new StyleRule(
+                new SelectorChild(
+                    new SelectorElement(typeof(Button), new[] { YellowButtonStyles.StyleClassButtonColorYellow }, null, null),
+                    new SelectorElement(typeof(Label), null, null, null)),
+                new[]
+                {
+                    new StyleProperty("font-color", YellowButtonStyles.ButtonColorTextYellow)
+                }),
+
             }).ToList());
         }
     }

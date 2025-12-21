@@ -15,7 +15,15 @@
   - TypanService
   - TypanMaint
   - SyndicateAgent
-
+  skills: # CorvaxGoob-Skills
+    - Shooting
+  special:
+  - !type:AddComponentSpecial
+    components:
+      - type: AntagImmune
+      - type: NpcFactionMember
+        factions:
+        - Typan
 
 - type: startingGear
   id: SyndicateBotanist
