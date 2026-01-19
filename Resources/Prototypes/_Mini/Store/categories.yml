@@ -96,3 +96,25 @@
   name: Зомби Вирус
   priority: 6
   
+
+  # Blueshield
+
+- type: storeCategory
+  id: UplinkBlueshieldWeapon
+  name: Оружие
+  priority: 1
+
+- type: storeCategory
+  id: UplinkBlueshieldAmmo
+  name: Боеприпасы
+  priority: 2
+
+- type: storeCategory
+  id: UplinkBlueshieldMed
+  name: Медицина
+  priority: 3
+
+- type: storeCategory
+  id: UplinkBlueshieldMisc
+  name: Разное
+  priority: 4

@@ -1,0 +1,39 @@
+- type: entity
+  id: StorePresetUplinkBlueshield
+  abstract: true
+  components:
+  - type: Store
+    name: store-preset-name-uplink
+    categories:
+    - UplinkBlueshieldWeapon
+    - UplinkBlueshieldMisc
+    - UplinkBlueshieldAmmo
+    - UplinkBlueshieldMed
+    currencyWhitelist:
+    - Productunit
+
+- type: entity
+  parent: [BaseItem,  StorePresetUplinkBlueshield]
+  id: BaseUplinkBlueshield
+  name: Терминал Корпуса "Синий Щит"
+  description: Блюспейс магазин оперативнииками "Синий Щит".
+  suffix: 35 ЕТ
+  components:
+  - type: Sprite
+    sprite: ADT/Objects/Specific/bobert.rsi
+    layers:
+    - state: icon
+  - type: Item
+    sprite: ADT/Objects/Specific/bobert.rsi
+    heldPrefix: icon
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Store
+    balance:
+      Productunit: 35
+
+

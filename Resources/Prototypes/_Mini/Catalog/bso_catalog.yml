@@ -1,0 +1,408 @@
+# Weapon
+
+- type: listing
+  id: UplinkBlueshieldEG4
+  name: EG-4
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: WeaponEnergyRevolver
+  cost:
+    Productunit: 8
+  categories:
+  - UplinkBlueshieldWeapon
+
+- type: listing
+  id: UplinkBlueshieldEnergySword
+  name: Энеретический меч
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: EnergySwordBlueshield
+  cost:
+    Productunit: 12
+  categories:
+  - UplinkBlueshieldWeapon
+
+- type: listing
+  id: UplinkBlueshieldMultiphase
+  name: X-01 Мультифазный
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: WeaponEnergyGunMultiphase
+  cost:
+    Productunit: 12
+  categories:
+  - UplinkBlueshieldWeapon
+
+- type: listing
+  id: UplinkBlueshieldShield
+  name: Большой щит
+  description: 
+  icon: { sprite: \Textures\_Goobstation\Objects\Shields\blueshieldshield.rsi, state: base }
+  productEntity: BlueShieldShieldFilled
+  cost:
+    Productunit: 12
+  categories:
+  - UplinkBlueshieldWeapon
+
+- type: listing
+  id: UplinkBlueshieldChester
+  name: Винтовка "Честер"
+  description: 
+  icon: { sprite: /Textures/_Goobstation/Objects/Weapons/Guns/Lever/chester.rsi, state: base }
+  productEntity: WeaponLeverChester
+  cost:
+    Productunit: 15
+  categories:
+  - UplinkBlueshieldWeapon
+
+- type: listing
+  id: UplinkBlueshieldKungFu
+  name: Кунг-Фу
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: BSOManual
+  cost:
+    Productunit: 10
+  categories:
+  - UplinkBlueshieldWeapon
+
+- type: listing
+  id: UplinkBlueshieldPulseCarabine
+  name: Продвинутый импульсный карабин
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: WeaponPulseCarbineAdvanced
+  cost:
+    Productunit: 25
+  categories:
+  - UplinkBlueshieldWeapon
+
+- type: listing
+  id: UplinkBlueshieldAnnie
+  name: Винтовка "Энни"
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: WeaponRifleAnnie
+  cost:
+    Productunit: 25
+  categories:
+  - UplinkBlueshieldWeapon
+
+- type: listing
+  id: UplinkBlueshieldMachineGun
+  name: Пулемёт "Защитник"
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: WeaponMiniMachineGun
+  cost:
+    Productunit: 25
+  categories:
+  - UplinkBlueshieldWeapon
+
+- type: listing
+  id: UplinkBlueshieldFmg9
+  name: Глухарь
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: WeaponSubMachineGunFmg9
+  cost:
+    Productunit: 15
+  categories:
+  - UplinkBlueshieldWeapon
+
+# Med
+
+- type: listing
+  id: UplinkBlueshieldHypo
+  name: Боевой гипоспрей
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: HypoBlueshield
+  cost:
+    Productunit: 5
+  categories:
+  - UplinkBlueshieldMed
+
+- type: listing
+  id: UplinkBlueshieldMedkitCombat
+  name: Боевая аптечка
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: MedkitCombatFilled
+  cost:
+    Productunit: 3
+  categories:
+  - UplinkBlueshieldMed
+
+- type: listing
+  id: UplinkBlueshieldOmnizine
+  name: Бутылочка омнизина
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: OmnizineChemistryBottle
+  cost:
+    Productunit: 5
+  categories:
+  - UplinkBlueshieldMed
+
+- type: listing
+  id: UplinkBlueshieldOmnimedTool
+  name: Медицинский мультитул
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: OmnimedTool
+  cost:
+    Productunit: 6
+  categories:
+  - UplinkBlueshieldMed
+
+# Misc
+
+- type: listing
+  id: UplinkBlueshieldJetpack
+  name: Джетпак Офицера Синего Щита
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: JetpackBlueShieldFilled
+  cost:
+    Productunit: 6
+  categories:
+  - UplinkBlueshieldMisc
+
+- type: listing
+  id: UplinkBlueshieldMagboots
+  name: Магнитные сапоги Офицера Синего Щита
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: ClothingShoesBootsMagBlueshield
+  cost:
+    Productunit: 6
+  categories:
+  - UplinkBlueshieldMisc
+
+- type: listing
+  id: UplinkBlueshieldJawsOfLife
+  name: Челюсти жизни
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: JawsOfLife
+  cost:
+    Productunit: 3
+  categories:
+  - UplinkBlueshieldMisc
+
+- type: listing
+  id: UplinkBlueshieldPinpointerNuclear
+  name: Пинпоинтер на диск
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: PinpointerNuclear
+  cost:
+    Productunit: 2
+  categories:
+  - UplinkBlueshieldMisc
+
+- type: listing
+  id: UplinkBlueshieldMonitor
+  name: Монитор Офицера Синего Щита
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: HandheldCrewMonitorBSO
+  cost:
+    Productunit: 2
+  categories:
+  - UplinkBlueshieldMisc
+
+- type: listing
+  id: UplinkBlueshieldNutrient
+  name: Имплант питательной помпы
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: CentcommNutrimentImplanter
+  cost:
+    Productunit: 5
+  categories:
+  - UplinkBlueshieldMisc
+
+- type: listing
+  id: UplinkBlueshieldStypticStimulator
+  name: Имплант стимулятора заживления
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: CentcommStypticStimulatorImplanter
+  cost:
+    Productunit: 10
+  categories:
+  - UplinkBlueshieldMisc
+
+- type: listing
+  id: UplinkBlueshieldCatEars
+  name: ???
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: ClothingHeadHatCatEarsValid
+  cost:
+    Productunit: 35
+  categories:
+  - UplinkBlueshieldMisc
+
+
+
+
+
+
+# Ammo
+
+- type: listing
+  id: UplinkBlueshieldLightRifleIncendiaryMagazine
+  name: Обойма .30 зажигательные
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: MagazineLightRifleIncendiary
+  cost:
+    Productunit: 6
+  categories:
+  - UplinkBlueshieldAmmo
+
+- type: listing
+  id: UplinkBlueshieldLightRifleUraniumMagazine
+  name: Обойма .30 урановые
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: MagazineLightRifleUranium
+  cost:
+    Productunit: 8
+  categories:
+  - UplinkBlueshieldAmmo
+
+- type: listing
+  id: UplinkBlueshieldSubmachineGunUraniumMagazine
+  name: Обойма .35 урановые
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: MagazinePistolSubMachineGunUranium
+  cost:
+    Productunit: 6
+  categories:
+  - UplinkBlueshieldAmmo
+
+- type: listing
+  id: UplinkBlueshieldSubMachineIncendiaryMagazine
+  name: Обойма .35 зажигательные
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: MagazinePistolSubMachineGunIncendiary
+  cost:
+    Productunit: 6
+  categories:
+  - UplinkBlueshieldAmmo
+
+- type: listing
+  id: UplinkBlueshieldPulseSpeedloader
+  name: Импульсный барабан EG-4
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: EnergySpeedloaderPulse
+  cost:
+    Productunit: 8
+  categories:
+  - UplinkBlueshieldAmmo
+
+- type: listing
+  id: UplinkBlueshieldShotgun
+  name: Дробь .8
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: MagazineBoxShotgunHighCaliber
+  cost:
+    Productunit: 2
+  categories:
+  - UplinkBlueshieldAmmo
+
+- type: listing
+  id: UplinkBlueshieldShotgunFlash
+  name: Светошумовые .8
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: MagazineBoxShotgunHighCaliberFlash
+  cost:
+    Productunit: 5
+  categories:
+  - UplinkBlueshieldAmmo
+
+- type: listing
+  id: UplinkBlueshieldShotgunSlug
+  name: Пули .8
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: MagazineBoxShotgunSlugHighCaliber
+  cost:
+    Productunit: 5
+  categories:
+  - UplinkBlueshieldAmmo
+
+- type: listing
+  id: UplinkBlueshieldShotgunEnsnaring
+  name: Ловушка .8
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: MagazineBoxShotgunHighCaliberEnsnaring
+  cost:
+    Productunit: 5
+  categories:
+  - UplinkBlueshieldAmmo
+
+- type: listing
+  id: UplinkBlueshieldShotgunIncendiary
+  name: Зажигательные .8
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: MagazineBoxShotgunIncendiaryHighCaliber
+  cost:
+    Productunit: 5
+  categories:
+  - UplinkBlueshieldAmmo
+
+- type: listing
+  id: UplinkBlueshieldShotgunEMP
+  name: ЭМИ .8
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: MagazineBoxShotgunHighCaliberEMP
+  cost:
+    Productunit: 5
+  categories:
+  - UplinkBlueshieldAmmo
+
+- type: listing
+  id: UplinkBlueshieldSubMachineMagazine
+  name: Обойма .35
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: MagazinePistolSubMachineGun
+  cost:
+    Productunit: 2
+  categories:
+  - UplinkBlueshieldAmmo
+
+- type: listing
+  id: UplinkBlueshieldLeverMagazine
+  name: Магазин рычажной винтовки
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: MagazineShotgunLeverRifleEmpty
+  cost:
+    Productunit: 2
+  categories:
+  - UplinkBlueshieldAmmo
+
+- type: listing
+  id: UplinkBlueshieldLightRifleMagazine
+  name: Обойма .30
+  description: 
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  productEntity: MagazineLightRifle
+  cost:
+    Productunit: 4
+  categories:
+  - UplinkBlueshieldAmmo
