@@ -4,7 +4,7 @@
   id: UplinkBlueshieldEG4
   name: EG-4
   description: 
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  icon: { sprite: /Textures/_Goobstation/Objects/Weapons/Guns/Battery/erevolver.rsi, state: icon }
   productEntity: WeaponEnergyRevolver
   cost:
     Productunit: 8
@@ -15,7 +15,7 @@
   id: UplinkBlueshieldEnergySword
   name: Энеретический меч
   description: 
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  icon: { sprite: /Textures/_Mini/Objects/Weapons/Melee/e_sword.rsi, state: icon }
   productEntity: EnergySwordBlueshield
   cost:
     Productunit: 12
@@ -26,7 +26,7 @@
   id: UplinkBlueshieldMultiphase
   name: X-01 Мультифазный
   description: 
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  icon: { sprite: /Textures/_DV/Objects/Weapons/Guns/Battery/multiphase_energygun.rsi, state: icon }
   productEntity: WeaponEnergyGunMultiphase
   cost:
     Productunit: 12
@@ -37,7 +37,7 @@
   id: UplinkBlueshieldShield
   name: Большой щит
   description: 
-  icon: { sprite: \Textures\_Goobstation\Objects\Shields\blueshieldshield.rsi, state: base }
+  icon: { sprite: /Textures/_Goobstation/Objects/Shields/blueshieldshield.rsi, state: icon-on }
   productEntity: BlueShieldShieldFilled
   cost:
     Productunit: 12
@@ -59,7 +59,7 @@
   id: UplinkBlueshieldKungFu
   name: Кунг-Фу
   description: 
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  icon: { sprite: /Textures/_Goobstation/Objects/Misc/martial_arts.rsi, state: dragon }
   productEntity: BSOManual
   cost:
     Productunit: 10
@@ -70,7 +70,7 @@
   id: UplinkBlueshieldPulseCarabine
   name: Продвинутый импульсный карабин
   description: 
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Battery/pulse_carbine.rsi, state: icon }
   productEntity: WeaponPulseCarbineAdvanced
   cost:
     Productunit: 25
@@ -81,7 +81,7 @@
   id: UplinkBlueshieldAnnie
   name: Винтовка "Энни"
   description: 
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  icon: { sprite: /Textures/_Goobstation/Objects/Weapons/Guns/Rifles/annie.rsi, state: icon }
   productEntity: WeaponRifleAnnie
   cost:
     Productunit: 25
@@ -92,7 +92,7 @@
   id: UplinkBlueshieldMachineGun
   name: Пулемёт "Защитник"
   description: 
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  icon: { sprite: /Textures/_Mini/Objects/Weapons/Guns/LMGs/krio_gun.rsi, state: icon }
   productEntity: WeaponMiniMachineGun
   cost:
     Productunit: 25
@@ -103,7 +103,7 @@
   id: UplinkBlueshieldFmg9
   name: Глухарь
   description: 
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  icon: { sprite: /Textures/_Mini/Objects/Weapons/Guns/SMG/Fmg.rsi, state: icon }
   productEntity: WeaponSubMachineGunFmg9
   cost:
     Productunit: 15
@@ -116,7 +116,7 @@
   id: UplinkBlueshieldHypo
   name: Боевой гипоспрей
   description: 
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  icon: { sprite: /Textures/_Mini/Objects/Specific/blueshield_hypo.rsi, state: icon }
   productEntity: HypoBlueshield
   cost:
     Productunit: 5
@@ -127,7 +127,7 @@
   id: UplinkBlueshieldMedkitCombat
   name: Боевая аптечка
   description: 
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  icon: { sprite: /Textures/Objects/Specific/Medical/firstaidkits.rsi, state: blackkit }
   productEntity: MedkitCombatFilled
   cost:
     Productunit: 3
@@ -138,7 +138,7 @@
   id: UplinkBlueshieldOmnizine
   name: Бутылочка омнизина
   description: 
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  icon: { sprite: /Textures/Objects/Specific/Chemistry/bottle.rsi, state: bottle }
   productEntity: OmnizineChemistryBottle
   cost:
     Productunit: 5
@@ -149,7 +149,7 @@
   id: UplinkBlueshieldOmnimedTool
   name: Медицинский мультитул
   description: 
-  icon: { sprite: /Textures/Objects/Weapons/Guns/Rifles/carbine.rsi, state: base }
+  icon: { sprite: /Textures/_Shitmed/Objects/Specific/Medical/Surgery/omnimed.rsi, state: omnimed }
   productEntity: OmnimedTool
   cost:
     Productunit: 6
