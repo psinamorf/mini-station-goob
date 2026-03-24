@@ -15,16 +15,16 @@
 - type: entity
   parent: [BaseItem,  StorePresetUplinkBlueshield]
   id: BaseUplinkBlueshield
-  name: Терминал Корпуса "Синий Щит"
-  description: Блюспейс магазин оперативнииками "Синий Щит".
+  name: терминал Корпуса "Синий Щит"
+  description: Блюспейс магазин, используемый оперативнииками "Синий Щит".
   suffix: 35 ЕТ
   components:
   - type: Sprite
-    sprite: ADT/Objects/Specific/bobert.rsi
+    sprite: _Mini/Objects/Specific/Blueshield_Uplink.rsi
     layers:
     - state: icon
   - type: Item
-    sprite: ADT/Objects/Specific/bobert.rsi
+    sprite: _Mini/Objects/Specific/Blueshield_Uplink.rsi
     heldPrefix: icon
   - type: UserInterface
     interfaces:
