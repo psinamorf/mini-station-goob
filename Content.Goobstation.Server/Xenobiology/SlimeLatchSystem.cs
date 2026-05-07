@@ -24,7 +24,9 @@ using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Map;
 using Robust.Shared.Timing;
+using System.Numerics;
 
 namespace Content.Goobstation.Server.Xenobiology;
 
@@ -313,11 +315,7 @@ public sealed partial class SlimeLatchSystem : EntitySystem
             return;
         }
 
-        var xform = Transform(ent);
-        if (xform.ParentUid != target)
-            _xform.SetParent(ent, target);
-
-        _xform.SetCoordinates(ent, Transform(target).Coordinates);
+        _xform.SetCoordinates(ent, new EntityCoordinates(target, Vector2.Zero));
 
         if (TryComp<InputMoverComponent>(ent, out var inpm))
             inpm.CanMove = false;
