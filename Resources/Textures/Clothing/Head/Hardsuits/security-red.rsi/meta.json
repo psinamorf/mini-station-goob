@@ -38,10 +38,12 @@
       "directions": 4
     },
     {
-      "name": "inhand-left"
+      "name": "off-equipped-HELMET-feroxi",
+      "directions": 4
     },
     {
-      "name": "inhand-right"
+      "name": "on-equipped-HELMET-feroxi",
+      "directions": 4
     }
   ]
 }
