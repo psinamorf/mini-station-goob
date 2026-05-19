@@ -14,9 +14,6 @@
   id: JobERTInteQVanguard
 
 - type: playTimeTracker
-  id: JobCBURNLeader
-
-- type: playTimeTracker
   id: JobDeathSquadLeader
 
 - type: playTimeTracker
