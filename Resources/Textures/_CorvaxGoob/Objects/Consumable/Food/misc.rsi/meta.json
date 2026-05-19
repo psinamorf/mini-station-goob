@@ -1,34 +1,24 @@
 {
-  "version": 1,
-  "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from TG Station | Edited by PuroSlavKing (Github) | Brown sprited by PuroSlavKing (Github)",
-  "size": {
-    "x": 32,
-    "y": 32
-  },
-  "states": [
-    {
-        "name": "pureshka"
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "Taken from TG Station | Edited by PuroSlavKing (Github) | Brown sprited by PuroSlavKing (Github)",
+    "size": {
+        "x": 32,
+        "y": 32
     },
-    {
-        "name": "salt"
-    },
-    {
-        "name": "sword"
-    },
-    {
-        "name": "bitrun-avatar",
-        "delays": [
-            [
-                0.1,
-                0.1,
-                0.1,
-                0.1
-            ]
-        ]
-    },
-    {
-        "name": "bitrunner"
-    }
-  ]
+    "states": [
+        {
+            "name": "pureshka"
+        },
+        {
+            "name": "salt"
+        },
+        {
+            "name": "bitrun-avatar",
+            "delays": [[0.1, 0.1, 0.1, 0.1]]
+        },
+        {
+            "name": "bitrunner"
+        }
+    ]
 }
