@@ -645,3 +645,19 @@
     layers:
       - state: green
       - state: zookeeper
+
+- type: entity
+  id: SpawnPointSkeletonBartender
+  parent: MarkerBase
+  name: skeleton bartender
+  components:
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+      - sprite: Mobs/Species/Skeleton/parts.rsi
+        state: skull_icon
+      - state: bartender
+  - type: ConditionalSpawner
+    prototypes:
+    - MobSkeletonBartender
