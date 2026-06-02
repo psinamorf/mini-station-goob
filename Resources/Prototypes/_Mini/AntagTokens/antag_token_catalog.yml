@@ -59,7 +59,7 @@
       requiresInRound: true
       minimumPlayers: 10
       minimumTimeFromRoundStart: 900
-      freeMinimumSponsorLevel: 3
+      freeMinimumSponsorLevel: 2
 
     - id: paradox_clone
       nameLocKey: antag-store-role-clone-name
@@ -89,7 +89,7 @@
       minimumPlayers: 15
       requiresInRound: true
       minimumTimeFromRoundStart: 2100
-      freeMinimumSponsorLevel: 3
+      freeMinimumSponsorLevel: 1
 
     - id: devil
       nameLocKey: antag-store-role-devil-name
@@ -132,7 +132,6 @@
       minimumPlayers: 20
       requiresInRound: true
       minimumTimeFromRoundStart: 3000
-      freeMinimumSponsorLevel: 4
 
     - id: ninja
       nameLocKey: antag-store-role-ninja-name
@@ -233,7 +232,6 @@
       minimumPlayers: 30
       requiresInRound: true
       minimumTimeFromRoundStart: 2700
-      freeMinimumSponsorLevel: 3
 
     - id: dragon
       nameLocKey: antag-store-role-dragon-name
@@ -288,7 +286,6 @@
       tagLocKey: antag-token-window-tag-queue
       minimumPlayers: 30
       requiresPreRoundLobby: true
-      freeMinimumSponsorLevel: 5
 
     - id: yao
       nameLocKey: antag-store-role-yao-name
@@ -303,7 +300,7 @@
       minimumPlayers: 25
       requiresInRound: true
       minimumTimeFromRoundStart: 2700
-      freeMinimumSponsorLevel: 4
+      freeMinimumSponsorLevel: 3
 
     - id: changeling
       nameLocKey: antag-store-role-changeling-name
@@ -316,7 +313,7 @@
       tagLocKey: antag-token-window-tag-queue
       minimumPlayers: 25
       requiresPreRoundLobby: true
-      freeMinimumSponsorLevel: 5
+      freeMinimumSponsorLevel: 4
       speciesBlacklist: [IPC]
 
     - id: wraith
@@ -332,7 +329,7 @@
       minimumPlayers: 30
       requiresInRound: true
       minimumTimeFromRoundStart: 2400
-      freeMinimumSponsorLevel: 5
+      freeMinimumSponsorLevel: 4
 
     - id: blob
       nameLocKey: antag-store-role-blob-name
@@ -347,7 +344,7 @@
       minimumPlayers: 30
       requiresInRound: true
       minimumTimeFromRoundStart: 2700
-      freeMinimumSponsorLevel: 5
+      freeMinimumSponsorLevel: 4
 
     - id: wizard
       nameLocKey: antag-store-role-wizard-name
@@ -362,4 +359,4 @@
       minimumPlayers: 30
       requiresInRound: true
       minimumTimeFromRoundStart: 2100
-      freeMinimumSponsorLevel: 5
+      freeMinimumSponsorLevel: 4
