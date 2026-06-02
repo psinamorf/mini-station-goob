@@ -74,6 +74,7 @@
       minimumPlayers: 15
       requiresInRound: true
       minimumTimeFromRoundStart: 1200
+      freeMinimumSponsorLevel: 2
 
     - id: vox
       nameLocKey: antag-store-role-vox-name
@@ -88,6 +89,7 @@
       minimumPlayers: 15
       requiresInRound: true
       minimumTimeFromRoundStart: 2100
+      freeMinimumSponsorLevel: 1
 
     - id: devil
       nameLocKey: antag-store-role-devil-name
@@ -115,6 +117,7 @@
       minimumPlayers: 15
       requiresInRound: true
       minimumTimeFromRoundStart: 900
+      freeMinimumSponsorLevel: 1
 
     - id: bingle
       nameLocKey: antag-store-role-bingle-name
