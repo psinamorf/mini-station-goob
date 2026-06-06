@@ -60,6 +60,9 @@ public sealed partial class BloodCultShacklesEvent : EntityTargetActionEvent, IS
     public EntProtoId ShacklesProto = "ShadowShackles";
 
     [DataField]
+    public TimeSpan CuffDuration = TimeSpan.FromSeconds(3);
+
+    [DataField]
     public TimeSpan MuteDuration = TimeSpan.FromSeconds(5);
 
     [DataField]
@@ -93,6 +96,10 @@ public sealed partial class SummonEquipmentEvent : InstantActionEvent, ISpeakSpe
     public InGameICChatType ChatType => InGameICChatType.Whisper;
 }
 
+public sealed partial class BloodCultSelectSpellsEvent : InstantActionEvent;
+
+public sealed partial class BloodCultRemoveSpellsEvent : InstantActionEvent;
+
 public sealed partial class BloodSpearRecalledEvent : InstantActionEvent;
 
 public sealed partial class PlaceTileEntityEvent : WorldTargetActionEvent
@@ -115,6 +122,13 @@ public sealed partial class PhaseShiftEvent : InstantActionEvent
 
     [DataField]
     public ProtoId<StatusEffectPrototype> StatusEffectId = "PhaseShifted";
+}
+
+[Serializable, NetSerializable]
+public sealed partial class BloodCultShacklesDoAfterEvent : SimpleDoAfterEvent
+{
+    public TimeSpan MuteDuration;
+    public TimeSpan KnockdownDuration;
 }
 
 [Serializable, NetSerializable]

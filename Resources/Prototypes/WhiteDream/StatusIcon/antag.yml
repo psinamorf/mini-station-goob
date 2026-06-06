@@ -1,4 +1,4 @@
-﻿- type: statusIcon
+﻿- type: factionIcon
   id: BloodCultMember
   priority: 11
   locationPreference: left
@@ -6,7 +6,7 @@
     sprite: /Textures/WhiteDream/BloodCult/cult_hud.rsi
     state: cult_member
 
-- type: statusIcon
+- type: factionIcon
   id: BloodCultLeader
   priority: 11
   locationPreference: left

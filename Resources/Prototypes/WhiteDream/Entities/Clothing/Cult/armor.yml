@@ -26,7 +26,8 @@
   - type: ExplosionResistance
     damageCoefficient: 0.5
   - type: TemperatureProtection
-    coefficient: 0.001
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetCultArmor
   - type: CultItem
@@ -74,7 +75,7 @@
     clothingPrototype: ClothingHeadHatHoodCultHoodTrue
   - type: ContainerContainer
     containers:
-      toggleable-clothing: !type:ContainerSlot { }
+      toggleable-clothing: !type:Container { }
 
 - type: entity
   parent: ClothingHeadHatHoodCulthood

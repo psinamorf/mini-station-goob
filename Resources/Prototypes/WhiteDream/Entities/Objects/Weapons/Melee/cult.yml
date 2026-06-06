@@ -1,45 +1,4 @@
 - type: entity
-  name: ritual dagger
-  parent: BaseKnife
-  id: RitualDagger
-  description: A strange dagger used by sinister groups for rituals and sacrifices.
-  components:
-  - type: Sprite
-    sprite: Objects/Weapons/Melee/cult_dagger.rsi
-    state: icon
-  - type: MeleeWeapon # TODO: It should have armor piercing effect (around 50%?) but we have no such system yet. Sucks.
-    wideAnimationRotation: -135
-    maxTargets: 1
-    heavyRateModifier: 0.95
-    heavyStaminaCost: 5
-    damage:
-      types:
-        Piercing: 15
-  - type: DamageOtherOnHit
-    staminaCost: 5
-  - type: EmbeddableProjectile
-  - type: EmbedPassiveDamage
-  - type: ThrowingAngle
-    angle: 225
-  - type: Clothing
-    sprite: Objects/Weapons/Melee/cult_dagger.rsi
-    slots:
-    - back
-  - type: DisarmMalus
-  - type: CultItem
-  - type: RuneDrawer
-  - type: ActivatableUI
-    key: enum.RuneDrawerBuiKey.Key
-    inHandsOnly: true
-    userWhitelist:
-      components:
-      - BloodCultist
-  - type: UserInterface
-    interfaces:
-      enum.RuneDrawerBuiKey.Key:
-        type: RuneDrawerBUI
-
-- type: entity
   name: eldritch longsword
   parent: BaseItem
   id: EldritchLongsword
@@ -56,16 +15,15 @@
     damage:
       types:
         Slash: 24
-    heavyDamageBaseModifier: 1.2
     heavyStaminaCost: 10
-    maxTargets: 3
     angle: 90
     soundHit:
       path: /Audio/Weapons/bladeslice.ogg
   - type: DamageOtherOnHit
-    staminaCost: 8
+    damage:
+      types:
+        Slash: 24
   - type: EmbeddableProjectile
-  - type: EmbedPassiveDamage
   - type: ThrowingAngle
     angle: 225
   - type: Item
@@ -91,7 +49,6 @@
     state: icon
   - type: EmbeddableProjectile
     offset: 0.15,0.15
-  - type: EmbedPassiveDamage
   - type: ThrowingAngle
     angle: 225
   - type: Fixtures
@@ -124,7 +81,6 @@
     damage:
       types:
         Piercing: 40
-    staminaCost: 18
   - type: Item
     sprite: WhiteDream/BloodCult/Entities/Items/Weapons/cult_spear.rsi
     storedRotation: 44
@@ -159,7 +115,6 @@
       types:
         Blunt: 0
     heavyStaminaCost: 0
-    maxTargets: 1
   - type: BloodRitesAura
   - type: UserInterface
     interfaces:

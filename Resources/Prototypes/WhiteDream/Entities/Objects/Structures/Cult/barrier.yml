@@ -51,8 +51,15 @@
   components:
   - type: Sprite
     sprite: WhiteDream/BloodCult/Entities/Structures/cult_shield.rsi
-    state: icon
+    layers:
+    - state: icon
+      map: [ "base" ]
   - type: Icon
     sprite: WhiteDream/BloodCult/Entities/Structures/cult_shield.rsi
     state: icon
-  - type: Dispellable
+  - type: GenericVisualizer
+    visuals:
+      enum.SpawnAnimationVisuals.Spawned:
+        base:
+          True: { state: icon }
+          False: { state: icon }

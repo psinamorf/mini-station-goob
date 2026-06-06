@@ -1,5 +1,6 @@
 ﻿using Content.Server.Popups;
-using Content.Shared.ListViewSelector;
+using Content.Shared._White.ListViewSelector;
+using Content.Shared.UserInterface;
 using Content.Shared.WhiteDream.BloodCult.UI;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
@@ -20,6 +21,7 @@ public sealed class CultRuneTeleportSystem : EntitySystem
 
         SubscribeLocalEvent<CultRuneTeleportComponent, AfterRunePlaced>(OnAfterRunePlaced);
         SubscribeLocalEvent<CultRuneTeleportComponent, NameSelectedMessage>(OnNameSelected);
+        SubscribeLocalEvent<CultRuneTeleportComponent, BoundUIClosedEvent>(OnNameSelectorClosed);
         SubscribeLocalEvent<CultRuneTeleportComponent, TryInvokeCultRuneEvent>(OnTeleportRuneInvoked);
         SubscribeLocalEvent<CultRuneTeleportComponent, ListViewItemSelectedMessage>(OnTeleportRuneSelected);
     }
@@ -31,7 +33,15 @@ public sealed class CultRuneTeleportSystem : EntitySystem
 
     private void OnNameSelected(Entity<CultRuneTeleportComponent> rune, ref NameSelectedMessage args)
     {
-        rune.Comp.Name = args.Name;
+        rune.Comp.Name = ResolveTeleportRuneName(args.Name);
+    }
+
+    private void OnNameSelectorClosed(Entity<CultRuneTeleportComponent> rune, ref BoundUIClosedEvent args)
+    {
+        if (args.UiKey is not NameSelectorUiKey || !string.IsNullOrWhiteSpace(rune.Comp.Name))
+            return;
+
+        rune.Comp.Name = ResolveTeleportRuneName(null);
     }
 
     private void OnTeleportRuneInvoked(Entity<CultRuneTeleportComponent> rune, ref TryInvokeCultRuneEvent args)
@@ -43,7 +53,7 @@ public sealed class CultRuneTeleportSystem : EntitySystem
             return;
         }
 
-        if (!TryGetTeleportRunes(runeUid, out var runes, args.User))
+        if (!TryGetTeleportRunes(args.User, out var runes, runeUid))
         {
             args.Cancel();
             return;
@@ -80,7 +90,7 @@ public sealed class CultRuneTeleportSystem : EntitySystem
             if (targetRune == runeUid)
                 continue;
 
-            var entry = new ListViewSelectorEntry(targetRune.ToString(), teleportRune.Name);
+            var entry = new ListViewSelectorEntry(targetRune.ToString(), ResolveTeleportRuneName(teleportRune.Name));
             runes.Add(entry);
         }
 
@@ -90,4 +100,7 @@ public sealed class CultRuneTeleportSystem : EntitySystem
         _popup.PopupEntity(Loc.GetString("cult-teleport-not-found"), user, user);
         return false;
     }
+
+    private string ResolveTeleportRuneName(string? name) =>
+        string.IsNullOrWhiteSpace(name) ? Loc.GetString("cult-teleport-rune-unnamed") : name.Trim();
 }

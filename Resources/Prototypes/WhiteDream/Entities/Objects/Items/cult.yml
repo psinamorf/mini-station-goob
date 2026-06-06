@@ -135,6 +135,7 @@
     size: Small
     storedRotation: 90
   - type: Handcuff
+    cuffTime: 3
     breakoutTime: 5
     breakOnRemove: true
     cuffedRSI: Objects/Misc/cablecuffs.rsi
@@ -157,14 +158,12 @@
     size: Ginormous
   - type: CultItem
   - type: StunOnCollide
-    blacklist:
-      components:
-      - BloodCultist
+    stunAmount: 3
+    knockdownAmount: 3
   - type: Reflect
     reflectProb: 0.75
-    innate: true
-    reflects:
-    - Energy
+    reflects: Energy
+    reflectingInHands: true
   - type: Blocking
     passiveBlockModifier:
       coefficients:

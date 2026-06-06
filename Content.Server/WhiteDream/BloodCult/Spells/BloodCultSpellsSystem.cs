@@ -9,6 +9,7 @@ using Content.Shared.Stunnable;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Events;
 using Content.Shared.Clothing.Components;
+using Content.Shared.Cuffs.Components;
 using Content.Shared.DoAfter;
 using Content.Shared.Inventory;
 using Content.Shared.Mindshield.Components;
@@ -16,7 +17,6 @@ using Content.Shared.Popups;
 using Content.Shared._White.RadialSelector;
 using Content.Shared.Speech.Muting;
 using Content.Shared.StatusEffect;
-using Content.Shared.Verbs;
 using Content.Shared.WhiteDream.BloodCult.Spells;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
@@ -49,13 +49,16 @@ public sealed class BloodCultSpellsSystem : EntitySystem
         SubscribeLocalEvent<BaseCultSpellComponent, ActionGettingDisabledEvent>(OnActionGettingDisabled);
 
         SubscribeLocalEvent<BloodCultSpellsHolderComponent, ComponentStartup>(OnComponentStartup);
-        SubscribeLocalEvent<BloodCultSpellsHolderComponent, GetVerbsEvent<ExamineVerb>>(OnGetVerbs);
+        SubscribeLocalEvent<BloodCultSpellsHolderComponent, ComponentShutdown>(OnComponentShutdown);
+        SubscribeLocalEvent<BloodCultSpellsHolderComponent, BloodCultSelectSpellsEvent>(OnSelectSpellsAction);
+        SubscribeLocalEvent<BloodCultSpellsHolderComponent, BloodCultRemoveSpellsEvent>(OnRemoveSpellsAction);
         SubscribeLocalEvent<BloodCultSpellsHolderComponent, RadialSelectorSelectedMessage>(OnSpellSelected);
         SubscribeLocalEvent<BloodCultSpellsHolderComponent, CreateSpeellDoAfterEvent>(OnSpellCreated);
 
         SubscribeLocalEvent<BloodCultStunEvent>(OnStun);
         SubscribeLocalEvent<BloodCultEmpEvent>(OnEmp);
         SubscribeLocalEvent<BloodCultShacklesEvent>(OnShackles);
+        SubscribeLocalEvent<CuffableComponent, BloodCultShacklesDoAfterEvent>(OnShacklesDoAfter);
         SubscribeLocalEvent<SummonEquipmentEvent>(OnSummonEquipment);
     }
 
@@ -91,31 +94,45 @@ public sealed class BloodCultSpellsSystem : EntitySystem
             _actions.RemoveAction(args.Performer, (spell, actionComp));
     }
 
-    private void OnComponentStartup(Entity<BloodCultSpellsHolderComponent> cultist, ref ComponentStartup args) =>
+    private void OnComponentStartup(Entity<BloodCultSpellsHolderComponent> cultist, ref ComponentStartup args)
+    {
         cultist.Comp.MaxSpells = cultist.Comp.DefaultMaxSpells;
 
-    private void OnGetVerbs(Entity<BloodCultSpellsHolderComponent> cultist, ref GetVerbsEvent<ExamineVerb> args)
+        foreach (var actionId in cultist.Comp.ManagementActions)
+        {
+            var action = _actions.AddAction(cultist, actionId);
+            if (action.HasValue)
+                cultist.Comp.ManagementActionEnts.Add(action.Value);
+        }
+    }
+
+    private void OnComponentShutdown(Entity<BloodCultSpellsHolderComponent> cultist, ref ComponentShutdown args)
     {
-        if (args.User != args.Target)
+        foreach (var actionUid in cultist.Comp.ManagementActionEnts)
+        {
+            if (TryComp<ActionComponent>(actionUid, out var actionComp))
+                _actions.RemoveAction(cultist.Owner, (actionUid, actionComp));
+        }
+
+        cultist.Comp.ManagementActionEnts.Clear();
+    }
+
+    private void OnSelectSpellsAction(Entity<BloodCultSpellsHolderComponent> cultist, ref BloodCultSelectSpellsEvent args)
+    {
+        if (args.Handled)
             return;
 
-        var addVerb = new ExamineVerb
-        {
-            Category = VerbCategory.BloodSpells,
-            Text = Loc.GetString("blood-cult-select-spells-verb"),
-            Priority = 1,
-            Act = () => SelectBloodSpells(cultist)
-        };
-        var removeVerb = new ExamineVerb
-        {
-            Category = VerbCategory.BloodSpells,
-            Text = Loc.GetString("blood-cult-remove-spells-verb"),
-            Priority = 0,
-            Act = () => RemoveBloodSpells(cultist)
-        };
+        SelectBloodSpells(cultist);
+        args.Handled = true;
+    }
 
-        args.Verbs.Add(removeVerb);
-        args.Verbs.Add(addVerb);
+    private void OnRemoveSpellsAction(Entity<BloodCultSpellsHolderComponent> cultist, ref BloodCultRemoveSpellsEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        RemoveBloodSpells(cultist);
+        args.Handled = true;
     }
 
     private void OnSpellSelected(Entity<BloodCultSpellsHolderComponent> cultist, ref RadialSelectorSelectedMessage args)
@@ -129,12 +146,14 @@ public sealed class BloodCultSpellsSystem : EntitySystem
                 cultist.Comp.SelectedSpells.Remove(actionUid);
             }
 
+            CloseSpellSelector(cultist);
             return;
         }
 
         if (cultist.Comp.SelectedSpells.Count >= cultist.Comp.MaxSpells)
         {
             _popup.PopupEntity(Loc.GetString("blood-cult-spells-too-many"), cultist, cultist, PopupType.Medium);
+            CloseSpellSelector(cultist);
             return;
         }
 
@@ -152,6 +171,8 @@ public sealed class BloodCultSpellsSystem : EntitySystem
         {
             BreakOnMove = true
         };
+
+        CloseSpellSelector(cultist);
 
         if (_doAfter.TryStartDoAfter(doAfter, out var doAfterId))
             cultist.Comp.DoAfterId = doAfterId;
@@ -196,13 +217,77 @@ public sealed class BloodCultSpellsSystem : EntitySystem
         if (ev.Handled)
             return;
 
-        var shuckles = Spawn(ev.ShacklesProto);
-        if (!_cuffable.TryAddNewCuffs(ev.Target, ev.Performer, shuckles))
+        if (!TryComp<CuffableComponent>(ev.Target, out _))
             return;
 
-        _stun.TryKnockdown(ev.Target, ev.KnockdownDuration, true);
-        _statusEffects.TryAddStatusEffect<MutedComponent>(ev.Target, "Muted", ev.MuteDuration, true);
+        var shackles = Spawn(ev.ShacklesProto, Transform(ev.Performer).Coordinates);
+
+        if (!_hands.TryPickupAnyHand(ev.Performer, shackles))
+        {
+            QueueDel(shackles);
+            return;
+        }
+
+        var doAfterEvent = new BloodCultShacklesDoAfterEvent
+        {
+            MuteDuration = ev.MuteDuration,
+            KnockdownDuration = ev.KnockdownDuration
+        };
+
+        var doAfter = new DoAfterArgs(
+            EntityManager,
+            ev.Performer,
+            ev.CuffDuration,
+            doAfterEvent,
+            ev.Target,
+            ev.Target,
+            shackles)
+        {
+            BreakOnMove = true,
+            NeedHand = true,
+            DistanceThreshold = 3f
+        };
+
+        if (!_doAfter.TryStartDoAfter(doAfter))
+        {
+            _hands.TryDrop(ev.Performer, shackles);
+            QueueDel(shackles);
+            return;
+        }
+
         ev.Handled = true;
+    }
+
+    private void OnShacklesDoAfter(Entity<CuffableComponent> target, ref BloodCultShacklesDoAfterEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        args.Handled = true;
+
+        var user = args.Args.User;
+        var shackles = args.Args.Used;
+
+        if (args.Cancelled || shackles == null)
+        {
+            if (shackles != null)
+            {
+                _hands.TryDrop(user, shackles.Value);
+                QueueDel(shackles.Value);
+            }
+
+            return;
+        }
+
+        if (!_cuffable.TryAddNewCuffs(target, user, shackles.Value, target))
+        {
+            _hands.TryDrop(user, shackles.Value);
+            QueueDel(shackles.Value);
+            return;
+        }
+
+        _stun.TryKnockdown(target, args.KnockdownDuration, true);
+        _statusEffects.TryAddStatusEffect<MutedComponent>(target, "Muted", args.MuteDuration, true);
     }
 
     private void OnSummonEquipment(SummonEquipmentEvent ev)
@@ -246,7 +331,8 @@ public sealed class BloodCultSpellsSystem : EntitySystem
         {
             var entry = new RadialSelectorEntry
             {
-                Prototype = spellId
+                Prototype = spellId,
+                Icon = GetActionPrototypeIcon(spellId)
             };
 
             radialList.Add(entry);
@@ -274,6 +360,7 @@ public sealed class BloodCultSpellsSystem : EntitySystem
             var entry = new RadialSelectorEntry
             {
                 Prototype = spell.ToString(),
+                Name = Name(spell),
                 Icon = GetActionIcon(spell)
             };
 
@@ -286,9 +373,23 @@ public sealed class BloodCultSpellsSystem : EntitySystem
         _ui.TryToggleUi(cultist.Owner, RadialSelectorUiKey.Key, cultist.Owner);
     }
 
+    private void CloseSpellSelector(Entity<BloodCultSpellsHolderComponent> cultist)
+    {
+        _ui.CloseUi(cultist.Owner, RadialSelectorUiKey.Key, cultist.Owner);
+    }
+
     private SpriteSpecifier? GetActionIcon(EntityUid actionUid)
     {
         return TryComp<ActionComponent>(actionUid, out var action) ? action.Icon : null;
+    }
+
+    private SpriteSpecifier? GetActionPrototypeIcon(string protoId)
+    {
+        if (!_proto.TryIndex(protoId, out var prototype, false)
+            || !prototype.TryGetComponent(out ActionComponent? action, EntityManager.ComponentFactory))
+            return null;
+
+        return action.Icon;
     }
 
     #endregion

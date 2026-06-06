@@ -12,6 +12,7 @@ blood-cult-role-briefing-short = Use '^' to contact other members of your brethr
 blood-cult-role-briefing-rending-locations = The veil can be thorn {$location}, {$coordinates}
 blood-cult-role-briefing-emergency-rending = We can draw {$amount} more rending or apocalypse runes!
 
+objective-issuer-blood-cult = [color=red]The Geometer of Blood[/color]
 blood-cult-condition-win = The Geometer of Blood has successfully summoned their Eldritch Goddess!
 blood-cult-condition-draw = Both parties were destroyed.
 blood-cult-condition-failure = The crew have managed to stop the rending of reality!

@@ -42,6 +42,9 @@ public sealed partial class RadialSelectorEntry
     public string? Prototype { get; set; }
 
     [DataField]
+    public string? Name { get; set; }
+
+    [DataField]
     public SpriteSpecifier? Icon { get; set; }
 
     [DataField]

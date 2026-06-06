@@ -20,6 +20,11 @@
       components:
       - type: BloodCultist
       - type: BloodCultSpellsHolder
+      - type: UserInterface
+        interfaces:
+          enum.RadialSelectorUiKey.Key:
+            type: RadialSelectorMenuBUI
+          enum.ListViewSelectorUiKey.Key:
+            type: ListViewSelectorBUI
       mindComponents:
       - type: BloodCultistRole
-        prototype: BloodCultist

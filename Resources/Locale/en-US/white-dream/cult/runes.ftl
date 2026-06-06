@@ -4,13 +4,23 @@ cult-rune-started-erasing = Started erasing...
 cult-rune-erased = Rune has been erased.
 cult-rune-not-enough-cultists = Not enough cultists to perform the ritual!
 cult-rune-no-targets = No targets have been found!
+cult-cant-draw-rune = You can't draw runes right now.
 
 cult-teleport-not-found = No runes found.
+cult-teleport-rune-unnamed = Unnamed rune
+
+list-view-window-default-title = Select an option
+list-view-selector-unnamed-entry = Unnamed
 
 cult-revive-rune-no-charges = Can not perform the revive ritual: no charges left.
 cult-revive-rune-already-alive = The target is already alive.
 
 cult-buff-already-buffed = You are already empowered.
+
+cult-blood-boil-rune-no-targets = No targets have been found!
+
+blood-cult-summon-being-pulled = The cultist is being pulled and can't be summoned!
+blood-cult-summon-cuffed = The cultist is restrained and can't be summoned!
 
 cult-rending-drawing-finished = The Geometer Of Blood has finished drawing the rune of end {$location}!
 cult-rending-target-alive = Can not start the ritual: the target is alive.

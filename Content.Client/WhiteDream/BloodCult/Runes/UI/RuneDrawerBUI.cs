@@ -38,18 +38,27 @@ public sealed class RuneDrawerBUI : BoundUserInterface
 
     protected override void Open()
     {
+        base.Open();
+
         _menu.OnClose += Close;
         _menu.OpenCenteredAt(_inputManager.MouseScreenPosition.Position / _displayManager.ScreenSize);
+
+        if (State is RuneDrawerMenuState runeDrawerState)
+            FillMenu(runeDrawerState.AvailalbeRunes);
     }
 
     protected override void Dispose(bool disposing)
     {
         base.Dispose(disposing);
-        _menu.Close();
+
+        if (disposing)
+            _menu.Dispose();
     }
 
     protected override void UpdateState(BoundUserInterfaceState state)
     {
+        base.UpdateState(state);
+
         if (state is RuneDrawerMenuState runeDrawerState)
             FillMenu(runeDrawerState.AvailalbeRunes);
     }
@@ -58,6 +67,8 @@ public sealed class RuneDrawerBUI : BoundUserInterface
     {
         if (runes is null)
             return;
+
+        _menu.Children.Clear();
 
         var container = new RadialContainer
         {

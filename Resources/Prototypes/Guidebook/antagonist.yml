@@ -45,3 +45,8 @@
   id: BloodCult
   name: guide-entry-blood-cult
   text: "/ServerInfo/Guidebook/Antagonist/BloodCult.xml"
+
+- type: guideEntry
+  id: Thief
+  name: guide-entry-thief
+  text: "/ServerInfo/Guidebook/Antagonist/Thieves.xml"

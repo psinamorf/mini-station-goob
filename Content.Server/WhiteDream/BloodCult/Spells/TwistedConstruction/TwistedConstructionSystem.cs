@@ -2,10 +2,12 @@
 using Content.Server.Mind;
 using Content.Server.Stack;
 using Content.Shared.DoAfter;
+using Content.Shared.Materials;
 using Content.Shared.Stacks;
 using Content.Shared.WhiteDream.BloodCult.Components;
 using Content.Shared.WhiteDream.BloodCult.Spells;
 using Robust.Server.GameObjects;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.WhiteDream.BloodCult.Spells.TwistedConstruction;
 
@@ -16,10 +18,29 @@ public sealed class TwistedConstructionSystem : EntitySystem
     [Dependency] private readonly TransformSystem _transform = default!;
     [Dependency] private readonly StackSystem _stack = default!;
 
+    private static readonly ProtoId<MaterialPrototype> SteelMaterial = "Steel";
+    private static readonly ProtoId<MaterialPrototype> PlasteelMaterial = "Plasteel";
+
     public override void Initialize()
     {
+        base.Initialize();
+
+        SubscribeLocalEvent<PhysicalCompositionComponent, MapInitEvent>(OnMaterialMapInit);
         SubscribeLocalEvent<BloodCultTwistedConstructionEvent>(OnTwistedConstruction);
         SubscribeLocalEvent<TwistedConstructionTargetComponent, TwistedConstructionDoAfterEvent>(OnDoAfter);
+    }
+
+    private void OnMaterialMapInit(Entity<PhysicalCompositionComponent> ent, ref MapInitEvent args)
+    {
+        if (HasComp<TwistedConstructionTargetComponent>(ent) || !HasComp<StackComponent>(ent))
+            return;
+
+        if (!ent.Comp.MaterialComposition.ContainsKey(SteelMaterial)
+            && !ent.Comp.MaterialComposition.ContainsKey(PlasteelMaterial))
+            return;
+
+        var twisted = EnsureComp<TwistedConstructionTargetComponent>(ent);
+        twisted.ReplacementProto = "RunedMetal";
     }
 
     private void OnTwistedConstruction(BloodCultTwistedConstructionEvent ev)
@@ -39,6 +60,11 @@ public sealed class TwistedConstructionSystem : EntitySystem
 
     private void OnDoAfter(Entity<TwistedConstructionTargetComponent> target, ref TwistedConstructionDoAfterEvent args)
     {
+        if (args.Cancelled || args.Handled)
+            return;
+
+        args.Handled = true;
+
         var replacement = Spawn(target.Comp.ReplacementProto, _transform.GetMapCoordinates(target));
         if (TryComp(target, out StackComponent? stack) && TryComp(replacement, out StackComponent? targetStack))
             _stack.SetCount(replacement, stack.Count, targetStack);

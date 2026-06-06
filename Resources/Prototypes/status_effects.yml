@@ -62,3 +62,6 @@
 
 - type: statusEffect
   id: PhaseShifted
+
+- type: statusEffect
+  id: Flashed

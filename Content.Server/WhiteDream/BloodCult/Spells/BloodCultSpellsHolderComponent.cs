@@ -16,8 +16,18 @@ public sealed partial class BloodCultSpellsHolderComponent : Component
     [DataField]
     public ProtoId<PsionicPowerPoolPrototype> PowersPoolPrototype = "BloodCultPowers";
 
+    [DataField]
+    public List<EntProtoId> ManagementActions =
+    [
+        "ActionBloodCultSelectSpells",
+        "ActionBloodCultRemoveSpells"
+    ];
+
     [ViewVariables(VVAccess.ReadOnly)]
     public List<EntityUid> SelectedSpells = new();
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public List<EntityUid> ManagementActionEnts = new();
 
     public int MaxSpells;
 

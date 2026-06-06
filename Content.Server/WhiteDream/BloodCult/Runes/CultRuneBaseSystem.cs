@@ -48,7 +48,7 @@ public sealed partial class CultRuneBaseSystem : EntitySystem
     public override void Initialize()
     {
         // Drawing rune
-        SubscribeLocalEvent<RuneDrawerComponent, BeforeActivatableUIOpenEvent>(BeforeOpenUi);
+        SubscribeLocalEvent<RuneDrawerComponent, BoundUIOpenedEvent>(OnRuneDrawerOpened);
         SubscribeLocalEvent<RuneDrawerComponent, RuneDrawerSelectedMessage>(OnRuneSelected);
         SubscribeLocalEvent<BloodCultistComponent, DrawRuneDoAfter>(OnDrawRune);
 
@@ -65,8 +65,11 @@ public sealed partial class CultRuneBaseSystem : EntitySystem
 
     #region EventHandlers
 
-    private void BeforeOpenUi(Entity<RuneDrawerComponent> ent, ref BeforeActivatableUIOpenEvent args)
+    private void OnRuneDrawerOpened(Entity<RuneDrawerComponent> ent, ref BoundUIOpenedEvent args)
     {
+        if (!Equals(args.UiKey, RuneDrawerBuiKey.Key))
+            return;
+
         var availableRunes = new List<ProtoId<RuneSelectorPrototype>>();
         var runeSelectorArray = _protoManager.EnumeratePrototypes<RuneSelectorPrototype>().OrderBy(r => r.ID).ToArray();
         foreach (var runeSelector in runeSelectorArray)
