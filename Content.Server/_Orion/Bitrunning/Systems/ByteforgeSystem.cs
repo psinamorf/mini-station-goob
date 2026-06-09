@@ -69,12 +69,14 @@ public sealed class ByteforgeSystem : EntitySystem
         {
             oldByteforgeComp.LinkedServer = null;
             _appearance.SetData(oldByteforge, ByteforgeVisuals.ByteforgeAngry, false);
+            Dirty(oldByteforge, oldByteforgeComp);
         }
 
         ent.Comp.LinkedByteforge = args.Sink;
         byteforge.LinkedServer = ent.Owner;
         UpdateByteforgeEmagVisual(ent.Comp);
         Dirty(ent);
+        Dirty(args.Sink, byteforge);
     }
 
     private void OnServerPortDisconnected(Entity<QuantumServerComponent> ent, ref PortDisconnectedEvent args)
@@ -85,6 +87,7 @@ public sealed class ByteforgeSystem : EntitySystem
         if (TryComp<ByteforgeComponent>(args.RemovedPortUid, out var byteforge))
         {
             byteforge.LinkedServer = null;
+            Dirty(args.RemovedPortUid, byteforge);
         }
 
         if (ent.Comp.LinkedByteforge is { } oldLinked && Exists(oldLinked))
@@ -193,6 +196,7 @@ public sealed class ByteforgeSystem : EntitySystem
                 ent.Comp.LinkedByteforge = linkedEntity;
                 byteforge.LinkedServer = ent.Owner;
                 UpdateByteforgeEmagVisual(ent.Comp);
+                Dirty(linkedEntity, byteforge);
                 Dirty(ent);
                 return;
             }
