@@ -1,6 +1,5 @@
 ﻿using Content.Shared.Body.Components;
 using Content.Server.Body.Systems;
-using Content.Server.DoAfter;
 using Content.Server.Hands.Systems;
 using Content.Server.Popups;
 using Content.Shared.Chemistry.Components.SolutionManager;
@@ -8,7 +7,7 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
-using Content.Shared.DoAfter;
+using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Examine;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Interaction;
@@ -23,6 +22,7 @@ using Content.Shared.WhiteDream.BloodCult.Spells;
 using Content.Shared.WhiteDream.BloodCult.UI;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.WhiteDream.BloodCult.BloodRites;
@@ -34,7 +34,6 @@ public sealed class BloodRitesSystem : EntitySystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly HandsSystem _handsSystem = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
@@ -49,9 +48,7 @@ public sealed class BloodRitesSystem : EntitySystem
         SubscribeLocalEvent<BloodRitesAuraComponent, ExaminedEvent>(OnExamining);
 
         SubscribeLocalEvent<BloodRitesAuraComponent, AfterInteractEvent>(OnAfterInteract);
-        SubscribeLocalEvent<BloodRitesAuraComponent, BloodRitesExtractDoAfterEvent>(OnDoAfter);
-
-        SubscribeLocalEvent<BloodRitesAuraComponent, MeleeHitEvent>(OnCultistHit);
+        SubscribeLocalEvent<BloodRitesAuraComponent, MeleeHitEvent>(OnMeleeHit);
 
         SubscribeLocalEvent<BloodRitesAuraComponent, BeforeActivatableUIOpenEvent>(BeforeUiOpen);
         SubscribeLocalEvent<BloodRitesAuraComponent, BloodRitesMessage>(OnRitesMessage);
@@ -64,26 +61,28 @@ public sealed class BloodRitesSystem : EntitySystem
 
     private void OnAfterInteract(Entity<BloodRitesAuraComponent> rites, ref AfterInteractEvent args)
     {
-        if (!args.Target.HasValue || args.Handled || args.Target == args.User ||
-            HasComp<BloodCultistComponent>(args.Target))
+        if (!args.Target.HasValue || args.Handled || args.Target == args.User)
             return;
+
+        if (HasComp<BloodCultistComponent>(args.Target) || HasComp<ConstructComponent>(args.Target))
+        {
+            if (TryHealCultist(rites, args.User, args.Target.Value))
+            {
+                _audio.PlayPvs(rites.Comp.BloodRitesAudio, rites);
+                args.Handled = true;
+            }
+
+            return;
+        }
 
         if (HasComp<BloodstreamComponent>(args.Target))
         {
-            if (rites.Comp.ExtractDoAfterId.HasValue)
-                return;
-
-            var ev = new BloodRitesExtractDoAfterEvent();
-            var time = rites.Comp.BloodExtractionTime;
-            var doAfterArgs = new DoAfterArgs(EntityManager, args.User, time, ev, rites, args.Target)
+            if (TryExtractBlood(rites, args.Target.Value))
             {
-                BreakOnMove = true,
-                BreakOnDamage = true
-            };
-            if (_doAfter.TryStartDoAfter(doAfterArgs, out var doAfterId))
-                rites.Comp.ExtractDoAfterId = doAfterId;
+                _audio.PlayPvs(rites.Comp.BloodRitesAudio, rites);
+                args.Handled = true;
+            }
 
-            args.Handled = true;
             return;
         }
 
@@ -99,46 +98,100 @@ public sealed class BloodRitesSystem : EntitySystem
         }
     }
 
-    private void OnDoAfter(Entity<BloodRitesAuraComponent> rites, ref BloodRitesExtractDoAfterEvent args)
+    private void OnMeleeHit(Entity<BloodRitesAuraComponent> rites, ref MeleeHitEvent args)
     {
-        rites.Comp.ExtractDoAfterId = null;
-        if (args.Cancelled || args.Handled || args.Target is not { } target ||
-            !TryComp(target, out BloodstreamComponent? bloodstream) || bloodstream.BloodSolution is not { } solution)
+        if (!args.IsHit)
             return;
 
-        var extracted = solution.Comp.Solution.RemoveReagent(_bloodProto, rites.Comp.BloodExtractionAmount);
-        rites.Comp.StoredBlood += extracted;
-        _audio.PlayPvs(rites.Comp.BloodRitesAudio, rites);
-        args.Handled = true;
-    }
-
-    private void OnCultistHit(Entity<BloodRitesAuraComponent> rites, ref MeleeHitEvent args)
-    {
         if (args.HitEntities.Count == 0)
+        {
+            TryConsumePuddlesAtCoordinates(args.Coords, rites);
             return;
+        }
 
         var playSound = false;
 
         foreach (var target in args.HitEntities)
         {
-            if (!HasComp<BloodCultistComponent>(target) && !HasComp<ConstructComponent>(target))
-                return;
+            if (target == args.User)
+                continue;
 
-            if (TryComp(target, out BloodstreamComponent? bloodstream))
+            if (HasComp<BloodCultistComponent>(target) || HasComp<ConstructComponent>(target))
             {
-                if (RestoreBloodLevel(rites, args.User, (target, bloodstream)))
+                if (TryHealCultist(rites, args.User, target))
                     playSound = true;
+
+                continue;
             }
 
-            if (TryComp(target, out DamageableComponent? damageable))
+            if (HasComp<PuddleComponent>(target))
             {
-                if (Heal(rites, args.User, (target, damageable)))
-                    playSound = true;
+                ConsumePuddles(target, rites);
+                playSound = true;
+                continue;
+            }
+
+            if (HasComp<BloodstreamComponent>(target) && TryExtractBlood(rites, target))
+            {
+                playSound = true;
+                args.Handled = true;
             }
         }
 
         if (playSound)
             _audio.PlayPvs(rites.Comp.BloodRitesAudio, rites);
+    }
+
+    private bool TryExtractBlood(Entity<BloodRitesAuraComponent> rites, EntityUid target)
+    {
+        if (!TryComp(target, out BloodstreamComponent? bloodstream) ||
+            bloodstream.BloodSolution is not { } solution)
+            return false;
+
+        var extracted = solution.Comp.Solution.RemoveReagent(
+            bloodstream.BloodReagent,
+            rites.Comp.BloodExtractionAmount,
+            ignoreReagentData: true);
+
+        if (extracted <= FixedPoint2.Zero)
+            return false;
+
+        _solutionContainer.UpdateChemicals(solution);
+        rites.Comp.StoredBlood += extracted;
+        Dirty(target, bloodstream);
+        return true;
+    }
+
+    private bool TryHealCultist(Entity<BloodRitesAuraComponent> rites, EntityUid user, EntityUid target)
+    {
+        var healed = false;
+
+        if (TryComp(target, out BloodstreamComponent? bloodstream) &&
+            RestoreBloodLevel(rites, user, (target, bloodstream)))
+        {
+            healed = true;
+        }
+
+        if (TryComp(target, out DamageableComponent? damageable) && Heal(rites, user, (target, damageable)))
+            healed = true;
+
+        return healed;
+    }
+
+    private void TryConsumePuddlesAtCoordinates(EntityCoordinates coordinates, Entity<BloodRitesAuraComponent> rites)
+    {
+        var lookup = _lookup.GetEntitiesInRange<PuddleComponent>(
+            coordinates,
+            rites.Comp.PuddleConsumeRadius,
+            LookupFlags.Uncontained);
+
+        if (lookup.Count == 0)
+            return;
+
+        foreach (var puddle in lookup)
+            ConsumePuddles(puddle, rites);
+
+        _audio.PlayPvs(rites.Comp.BloodRitesAudio, rites);
     }
 
     private void BeforeUiOpen(Entity<BloodRitesAuraComponent> rites, ref BeforeActivatableUIOpenEvent args)
@@ -264,7 +317,10 @@ public sealed class BloodRitesSystem : EntitySystem
     {
         foreach (var (_, solution) in _solutionContainer.EnumerateSolutions(ent))
         {
-            rites.Comp.StoredBlood += solution.Comp.Solution.RemoveReagent(_bloodProto, 1000);
+            rites.Comp.StoredBlood += solution.Comp.Solution.RemoveReagent(
+                _bloodProto,
+                1000,
+                ignoreReagentData: true);
             _solutionContainer.UpdateChemicals(solution);
             break;
         }

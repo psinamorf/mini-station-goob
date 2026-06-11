@@ -313,9 +313,13 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 
         var potentialTargets = new List<EntityUid>();
 
-        // Cultists not being excluded from target selection is fully intended.
         while (querry.MoveNext(out var uid, out _, out _, out _))
+        {
+            if (HasComp<BloodCultistComponent>(uid))
+                continue;
+
             potentialTargets.Add(uid);
+        }
 
         rule.OfferingTarget = potentialTargets.Count > 0 ? _random.Pick(potentialTargets) : null;
     }
@@ -371,7 +375,11 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
         _faction.RemoveFaction(cultist, rule.Comp.NanoTrasenFaction);
         _faction.AddFaction(cultist, rule.Comp.BloodCultFaction);
 
-        _mind.TryAddObjective(mindId, mind, "KillTargetCultObjective");
+        if (rule.Comp.OfferingTarget is null)
+            SetRandomCultTarget(rule.Comp);
+
+        if (rule.Comp.OfferingTarget is { } target && target != cultist)
+            _mind.TryAddObjective(mindId, mind, "KillTargetCultObjective");
     }
 
     private void GetRandomRunePlacements(BloodCultRuleComponent component)
