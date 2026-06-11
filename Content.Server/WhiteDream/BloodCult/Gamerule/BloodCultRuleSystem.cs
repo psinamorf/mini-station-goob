@@ -313,9 +313,13 @@ public sealed class BloodCultRuleSystem : GameRuleSystem<BloodCultRuleComponent>
 
         var potentialTargets = new List<EntityUid>();
 
-        // Cultists not being excluded from target selection is fully intended.
         while (querry.MoveNext(out var uid, out _, out _, out _))
+        {
+            if (HasComp<BloodCultistComponent>(uid))
+                continue;
+
             potentialTargets.Add(uid);
+        }
 
         rule.OfferingTarget = potentialTargets.Count > 0 ? _random.Pick(potentialTargets) : null;
     }

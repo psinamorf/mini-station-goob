@@ -8,7 +8,7 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
-using Content.Shared.DoAfter;
+using Content.Goobstation.Maths.FixedPoint;
 using Content.Shared.Examine;
 using Content.Shared.Fluids.Components;
 using Content.Shared.Interaction;
@@ -35,7 +35,6 @@ public sealed class BloodRitesSystem : EntitySystem
     [Dependency] private readonly AudioSystem _audio = default!;
     [Dependency] private readonly BloodstreamSystem _bloodstream = default!;
     [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly DoAfterSystem _doAfter = default!;
     [Dependency] private readonly HandsSystem _handsSystem = default!;
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
@@ -50,8 +49,6 @@ public sealed class BloodRitesSystem : EntitySystem
         SubscribeLocalEvent<BloodRitesAuraComponent, ExaminedEvent>(OnExamining);
 
         SubscribeLocalEvent<BloodRitesAuraComponent, AfterInteractEvent>(OnAfterInteract);
-        SubscribeLocalEvent<BloodRitesAuraComponent, BloodRitesExtractDoAfterEvent>(OnDoAfter);
-
         SubscribeLocalEvent<BloodRitesAuraComponent, MeleeHitEvent>(OnMeleeHit);
 
         SubscribeLocalEvent<BloodRitesAuraComponent, BeforeActivatableUIOpenEvent>(BeforeUiOpen);
@@ -71,8 +68,11 @@ public sealed class BloodRitesSystem : EntitySystem
 
         if (HasComp<BloodstreamComponent>(args.Target))
         {
-            if (TryStartBloodExtraction(rites, args.User, args.Target.Value))
+            if (TryExtractBlood(rites, args.Target.Value))
+            {
+                _audio.PlayPvs(rites.Comp.BloodRitesAudio, rites);
                 args.Handled = true;
+            }
 
             return;
         }
@@ -96,7 +96,15 @@ public sealed class BloodRitesSystem : EntitySystem
             !TryComp(target, out BloodstreamComponent? bloodstream) || bloodstream.BloodSolution is not { } solution)
             return;
 
-        var extracted = solution.Comp.Solution.RemoveReagent(_bloodProto, rites.Comp.BloodExtractionAmount);
+        var extracted = solution.Comp.Solution.RemoveReagent(
+            bloodstream.BloodReagent,
+            rites.Comp.BloodExtractionAmount,
+            ignoreReagentData: true);
+
+        if (extracted <= FixedPoint2.Zero)
+            return;
+
+        _solutionContainer.UpdateChemicals(solution);
         rites.Comp.StoredBlood += extracted;
         _audio.PlayPvs(rites.Comp.BloodRitesAudio, rites);
         args.Handled = true;
@@ -141,30 +149,33 @@ public sealed class BloodRitesSystem : EntitySystem
                 continue;
             }
 
-            if (HasComp<BloodstreamComponent>(target) && TryStartBloodExtraction(rites, args.User, target))
+            if (HasComp<BloodstreamComponent>(target) && TryExtractBlood(rites, target))
+            {
                 playSound = true;
+                args.Handled = true;
+            }
         }
 
         if (playSound)
             _audio.PlayPvs(rites.Comp.BloodRitesAudio, rites);
     }
 
-    private bool TryStartBloodExtraction(Entity<BloodRitesAuraComponent> rites, EntityUid user, EntityUid target)
+    private bool TryExtractBlood(Entity<BloodRitesAuraComponent> rites, EntityUid target)
     {
-        if (rites.Comp.ExtractDoAfterId.HasValue)
+        if (!TryComp(target, out BloodstreamComponent? bloodstream))
             return false;
 
-        var ev = new BloodRitesExtractDoAfterEvent();
-        var doAfterArgs = new DoAfterArgs(EntityManager, user, rites.Comp.BloodExtractionTime, ev, rites, target)
-        {
-            BreakOnMove = true,
-            BreakOnDamage = true
-        };
-
-        if (!_doAfter.TryStartDoAfter(doAfterArgs, out var doAfterId))
+        if (!_solutionContainer.ResolveSolution(target, bloodstream.BloodSolutionName, ref bloodstream.BloodSolution,
+                out var bloodSolution))
             return false;
 
-        rites.Comp.ExtractDoAfterId = doAfterId;
+        var extracted = bloodSolution.RemoveReagent(bloodstream.BloodReagent, rites.Comp.BloodExtractionAmount);
+        if (extracted <= FixedPoint2.Zero)
+            return false;
+
+        _solutionContainer.UpdateChemicals(bloodstream.BloodSolution.Value);
+        rites.Comp.StoredBlood += extracted;
+        Dirty(target, bloodstream);
         return true;
     }
 
@@ -307,7 +318,10 @@ public sealed class BloodRitesSystem : EntitySystem
     {
         foreach (var (_, solution) in _solutionContainer.EnumerateSolutions(ent))
         {
-            rites.Comp.StoredBlood += solution.Comp.Solution.RemoveReagent(_bloodProto, 1000);
+            rites.Comp.StoredBlood += solution.Comp.Solution.RemoveReagent(
+                _bloodProto,
+                1000,
+                ignoreReagentData: true);
             _solutionContainer.UpdateChemicals(solution);
             break;
         }
