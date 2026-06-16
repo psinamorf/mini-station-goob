@@ -17,6 +17,15 @@
         {
             "name": "brass-inhand-left",
             "directions": 4
+        },
+        {
+            "name": "brass_buckler_overlay_1"
+        },
+        {
+            "name": "Illustration10_10"
+        },
+        {
+            "name": "Illustration13_9"
         }
     ]
 }
