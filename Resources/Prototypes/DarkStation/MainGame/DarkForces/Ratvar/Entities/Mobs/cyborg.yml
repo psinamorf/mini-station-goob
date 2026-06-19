@@ -179,8 +179,8 @@
       id: blinking
       interpolate: Nearest
       maxDuration: 1.0
-      minValue: 0.1
-      maxValue: 2.0
+      startValue: 0.1
+      endValue: 2.0
       isLooped: true
   - type: ToggleableLightVisuals
   - type: PointLight
@@ -227,7 +227,7 @@
     - state: generic
     - state: icon-tools
   - type: ItemBorgModule
-    moduleId: Tools
+    moduleId: RatvarWeapon
     items:
     - RatvarSpear
   - type: Tag

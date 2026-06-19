@@ -9,3 +9,12 @@ ratvar-winstate-summoning = [color=yellow]Праведники Ратвара н
 ratvar-winstate-righteouswon = [color=crimson]Праведники Ратвара смогли вызволить его заточения![/color]
 ratvar-righteous-briefing = Вы один из праведников Ратвара. Выполните все задания и выпустите Ратвара из тюрьмы. Слава механизмам!
 ratvar-righteous-message = Добро пожаловать к праведникам Ратвара! Помните, ваш культ является мирным и не устраивает резню!
+
+fibers-brass = латунное волокно
+objective-issuer-ratvar = Ратвар
+
+chat-radio-ratvar = Ратвар
+tool-quality-ratvar-screwing-name = Прикручивание Ратвара
+tool-quality-ratvar-screwing-tool-name = Инструмент прикручивания Ратвара
+tool-quality-ratvar-anchoring-name = Закрепление Ратвара
+tool-quality-ratvar-anchoring-tool-name = Инструмент закрепления Ратвара

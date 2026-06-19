@@ -15,12 +15,19 @@
     fiberMaterial: fibers-brass
   - type: FingerprintMask
   - type: Armor
+    coverage:
+    - Arm
+    - Hand
+    traumaDeductions:
+      Dismemberment: 0.1
+      OrganDamage: 0.1
+      BoneDamage: 0.1
+      VeinsDamage: 0
+      NerveDamage: 0
     modifiers:
       coefficients:
         Blunt: 0.6
         Slash: 0.8
         Piercing: 0.6
         Heat: 0.9
-      securePartTypes:
-        Arm: 0.6
   - type: RatvarItem

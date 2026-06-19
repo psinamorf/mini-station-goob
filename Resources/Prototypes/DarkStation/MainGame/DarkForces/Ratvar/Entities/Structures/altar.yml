@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: RatvarAltar
   parent: BaseRatvarStructure
   name: "Алтарь из шестереней"
@@ -50,7 +50,7 @@
       - !type:SnapToGrid
         southRotation: true
       steps:
-      - material: BrassPlasteel
+      - material: Brass
         amount: 10
         doAfter: 10
 
@@ -58,7 +58,7 @@
     entity: RatvarAltar
 
 - type: construction
-  name: "Алтарь Ратвара"
+  name: construction-recipe-ratvar-altar
   id: RatvarAltarConstruction
   graph: RatvarAltarGraph
   startNode: start
@@ -68,10 +68,7 @@
   entityWhitelist:
     components:
     - RatvarRighteous
-  description: Алтарь необходим для провеления ритуалов
-  icon:
-    sprite: DarkStation/MainGame/DarkForces/Ratvar/Structures/altar.rsi
-    state: altar
+  description: construction-recipe-ratvar-altar-desc
   conditions:
   - !type:TileNotBlocked
     failIfSpace: false

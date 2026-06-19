@@ -1,4 +1,4 @@
-﻿- type: entity
+- type: entity
   id: RatvarWorkshop
   parent: BaseRatvarStructure
   name: "Мастерская Ратвара"
@@ -51,7 +51,7 @@
     entity: RatvarWorkshop
 
 - type: construction
-  name: "Мастерская Ратвара"
+  name: construction-recipe-ratvar-workshop
   id: RatvarWorkshopConstruction
   graph: RatvarWorkshopGraph
   startNode: start
@@ -61,10 +61,7 @@
   entityWhitelist:
     components:
     - RatvarRighteous
-  description: "В мастерской праведники благословленными латунными инструментами создают оружие и снаряжение, что поможет им нести просветления Ратвара заблудшим душам."
-  icon:
-    sprite: DarkStation/MainGame/DarkForces/Ratvar/Structures/workshop.rsi
-    state: workshop
+  description: construction-recipe-ratvar-workshop-desc
   conditions:
   - !type:TileNotBlocked
     failIfSpace: false

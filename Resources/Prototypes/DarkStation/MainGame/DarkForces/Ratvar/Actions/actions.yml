@@ -10,14 +10,14 @@
     icon:
       sprite: DarkStation/MainGame/DarkForces/Ratvar/actions.rsi
       state: clocked_hand
+    sound:
+      path: /Audio/Magic/forcewall.ogg
   - type: TargetAction
     interactOnMiss: false
     range: 6
   - type: EntityTargetAction
     canTargetSelf: false
     event: !type:MidasTouchEvent
-    sound: !type:SoundPathSpecifier
-      path: /Audio/Magic/forcewall.ogg
 
 - type: entity
   id: RatvarClockMagic
@@ -31,11 +31,11 @@
     icon:
       sprite: DarkStation/MainGame/DarkForces/Ratvar/actions.rsi
       state: carve
+    sound:
+      path: /Audio/Magic/forcewall.ogg
   - type: TargetAction
     interactOnMiss: false
     range: 6
   - type: EntityTargetAction
     canTargetSelf: false
     event: !type:RatvarMagicEvent
-    sound: !type:SoundPathSpecifier
-      path: /Audio/Magic/forcewall.ogg
