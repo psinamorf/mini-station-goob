@@ -234,7 +234,7 @@ internal sealed partial class ChatManager : IChatManager
     //[Dependency] private readonly LinkAccountManager _linkAccount = default!; // RMC - Patreon // CorvaxGoob-Coins
 
     // Amour edit start
-    private StickerSanitizerSystem _stickerSanitizer => _entitySystemManager.GetEntitySystem<StickerSanitizerSystem>();
+    private StickerSanitizerSystem _stickerSanitizer => _entityManager.EntitySysManager.GetEntitySystem<StickerSanitizerSystem>();
     // Amour edit end
 
 
