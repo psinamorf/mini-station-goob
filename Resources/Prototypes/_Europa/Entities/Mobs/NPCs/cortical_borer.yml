@@ -20,7 +20,7 @@
       settings: default
     requirements:
     - !type:OverallPlaytimeRequirement
-      time: 36000 # 10 hrs
+      time: 3600 # 1 hrs
   - type: GhostTakeoverAvailable
   - type: Sprite
     scale: 0.6, 0.6
@@ -103,9 +103,9 @@
       path: "/Audio/Voice/Slime/slime_squish.ogg"
     maxScanRange: .5
   - type: CanEscapeInventory
-  - type: GuideHelp
-    guides:
-    - CorticalBorer
+  # - type: GuideHelp
+  #   guides:
+  #   - CorticalBorer
   - type: Body
     thermalVisibility: false
   - type: UniversalLanguageSpeaker
@@ -132,7 +132,7 @@
     rules: ghost-role-information-freeagent-rules
     requirements:
     - !type:OverallPlaytimeRequirement
-      time: 36000 # 10 hrs
+      time: 3600 # 1 hrs
     mindRoles:
     - MindRoleCorticalBorer
   - type: GhostRoleMobSpawner
