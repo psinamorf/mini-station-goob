@@ -99,11 +99,14 @@
 //
 // SPDX-License-Identifier: AGPL-3.0-or-later
 
+using System.Diagnostics.CodeAnalysis;
 using Content.Goobstation.Common.Grab;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Alert;
+using Content.Shared.Bed.Sleep; // CorvaxGoob
 using Content.Shared.Buckle.Components;
+using Content.Shared.Damage.Components; // CorvaxGoob
 using Content.Shared.CombatMode;
 using Content.Shared.Cuffs;
 using Content.Shared.Cuffs.Components;
@@ -157,6 +160,7 @@ public sealed class PullingSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedVirtualItemSystem _virtualSystem = default!;
     [Dependency] private readonly SharedCombatModeSystem _combatMode = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!; // CorvaxGoob
 
     public override void Initialize()
     {
@@ -586,6 +590,16 @@ public sealed class PullingSystem : EntitySystem
     }
     // Goob - Grab Intent End
 
+    public bool TryGetPulledEntity(EntityUid puller, [NotNullWhen(true)] out EntityUid? pulling, PullerComponent? component = null)
+    {
+        pulling = null;
+        if (!Resolve(puller, ref component, false) || !component.Pulling.HasValue)
+            return false;
+
+        pulling = component.Pulling;
+        return true;
+    }
+
     public bool TryStartPull(EntityUid pullerUid,
         EntityUid pullableUid,
         PullerComponent? pullerComp = null,
@@ -732,8 +746,11 @@ public sealed class PullingSystem : EntitySystem
         return true;
     }
 
-    public bool TryStopPull(EntityUid pullableUid, PullableComponent pullable, EntityUid? user = null, bool ignoreGrab = false)
+    public bool TryStopPull(EntityUid pullableUid, PullableComponent? pullable = null, EntityUid? user = null, bool ignoreGrab = false)
     {
+        if (!Resolve(pullableUid, ref pullable, false))
+            return false;
+
         var pullerUidNull = pullable.Puller;
 
         if (pullerUidNull == null)
@@ -748,6 +765,14 @@ public sealed class PullingSystem : EntitySystem
         // Goobstation - Grab Intent
         if (!ignoreGrab)
         {
+            // CorvaxGoob start
+            if (user == pullableUid
+                && (_mobState.IsIncapacitated(pullableUid)
+                    || HasComp<SleepingComponent>(pullableUid)
+                    || (TryComp<StaminaComponent>(pullableUid, out var stamina) && stamina.Critical)))
+                return false;
+            // CorvaxGoob end
+
             var tryReleaseEv = new GrabAttemptReleaseEvent(user, pullerUidNull.Value);
             RaiseLocalEvent(pullableUid, ref tryReleaseEv);
             if (!tryReleaseEv.Released)

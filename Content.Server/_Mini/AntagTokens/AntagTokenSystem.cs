@@ -80,7 +80,7 @@ public sealed class AntagTokenSystem : EntitySystem
     private bool _databaseSyncPassRunning;
     private bool _storeEnabled = true;
     private const float DatabaseSyncInterval = 15f;
-    private const int SharedTokenSlotsPlayersPerSlot = 10;
+    private const int SharedTokenSlotsPlayersPerSlot = 8;
     private bool _enforcingSharedTokenSlotCapacity;
     private readonly Dictionary<string, int> _ghostMinimumTimeRandomBonusByRole = new();
     private static readonly HashSet<string> BlockedRoundstartRolePresets = new(StringComparer.OrdinalIgnoreCase)
@@ -984,8 +984,10 @@ public sealed class AntagTokenSystem : EntitySystem
 
             if (IsReservedRoleBlockedByCurrentJob(session, role))
             {
-                ShowPopup(session, Loc.GetString("antag-tokens-popup-job-blocks-queued"));
+                RefundPendingDeposit(session.UserId, state);
+                PersistState(session.UserId, state);
                 SendState(session.UserId);
+                ShowPopup(session, Loc.GetString("antag-tokens-popup-job-blocks-queued"));
                 continue;
             }
 

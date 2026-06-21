@@ -1,22 +1,26 @@
 - type: entity
-  parent: BaseStructure
-  id: SpawnPointSkeletonPirate
-  name: skeleton pirate sleeper
-  suffix: Spawner, Ghost Role
+  parent: MarkerBase
+  id: SpawnPointGhostCorticalBorer
+  name: ghost role spawn point
+  suffix: cortical borer
   categories: [ Spawner ]
+  # requirements:
+  #   - !type:OverallPlaytimeRequirement
+  #     time: 36000 # 10 hrs
   components:
   - type: GhostRole
-    name: ghost-role-information-skeleton-pirate-bitrunning-name
-    description: ghost-role-information-skeleton-pirate-bitrunning-description
+    name: cortical-borer-ghostrole-name
+    description: cortical-borer-ghostrole-desc
     rules: ghost-role-information-antagonist-rules
+    mindRoles:
+    - MindRoleCorticalBorer
     raffle:
       settings: default
-    mindRoles:
-    - MindRoleGhostRoleFreeAgent
   - type: GhostRoleMobSpawner
-    prototype: MobSkeletonPirateBitrun
+    prototype: MobCorticalBorer
   - type: Sprite
+    sprite: Markers/jobs.rsi
     layers:
-    - sprite: _Orion/Structures/cryostasis_sleeper.rsi
-      state: sleeper_1
-      map: [ "base" ]
+      - state: green
+      - sprite: _Orion/Mobs/Aliens/cortical_borer.rsi
+        state: cortical_borer
