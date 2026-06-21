@@ -1,0 +1,9 @@
+diff a/Content.Goobstation.Server/Supermatter/Systems/SupermatterSystem.cs b/Content.Goobstation.Server/Supermatter/Systems/SupermatterSystem.cs	(rejected hunks)
+@@ -58,6 +58,7 @@
+ using Robust.Shared.Physics;
+ using Robust.Shared.Physics.Events;
+ using Robust.Shared.Timing;
++using Robust.Shared.Player;
+ 
+ namespace Content.Goobstation.Server.Supermatter.Systems;
+ 
