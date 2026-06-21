@@ -1,0 +1,10 @@
+diff a/Resources/Prototypes/_Goobstation/Catalog/selectable_sets.yml b/Resources/Prototypes/_Goobstation/Catalog/selectable_sets.yml	(rejected hunks)
+@@ -185,7 +185,7 @@
+   - ClothingOuterDavidsJacketValid
+   - AutosurgeonRightMantisBlade
+   - AutosurgeonLeftMantisBlade
+-  - AutosurgeonSandevistan
++  - AutosurgeonStatvekaSandevistan
+ 
+ - type: selectableSet
+   id: SyndicateHackerSet

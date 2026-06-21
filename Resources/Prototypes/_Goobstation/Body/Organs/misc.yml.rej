@@ -1,0 +1,13 @@
+diff a/Resources/Prototypes/_Goobstation/Body/Organs/misc.yml b/Resources/Prototypes/_Goobstation/Body/Organs/misc.yml	(rejected hunks)
+@@ -20,6 +20,11 @@
+   - type: Organ
+     onAdd:
+     - type: SandevistanUser
++      thresholds:
++        Warning: 15
++        Shaking: 30
++        Damage: 45
++        Disable: 60
+ 
+ - type: entity
+   parent: [ OrganHumanHeart, BaseSyndicateContraband ]
