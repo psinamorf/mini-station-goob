@@ -3,9 +3,9 @@
   id: MobCorticalBorer
   name: cortical borer
   description: Worm that burrows into brains.
-  requirements:
-    - !type:OverallPlaytimeRequirement
-      time: 3600 # 1 hrs
+  # requirements:
+  #   - !type:OverallPlaytimeRequirement
+  #     time: 3600 # 1 hrs
   components:
   - type: CombatMode
     combatToggleAction: ActionCombatModeToggleOff
