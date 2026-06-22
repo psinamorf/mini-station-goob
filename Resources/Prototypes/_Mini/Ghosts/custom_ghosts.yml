@@ -1,0 +1,83 @@
+# Кастомные темы призраков, покупаемые за монеты в магазине призраков
+# Price > 0 = покупается в магазине
+
+- type: customGhost
+  id: GhostThemeGodFace
+  name: "Божественный лик"
+  description: "Призрак с божественным сиянием"
+  price: 75
+  sprite: _Mini/Ghosts/GodFace.rsi
+  ghostName: "Божественный призрак"
+
+- type: customGhost
+  id: GhostThemeKreses
+  name: "Крестес"
+  description: "Таинственный призрак"
+  price: 75
+  sprite: _Mini/Ghosts/kreses.rsi
+  ghostName: "Призрак Крестес"
+
+- type: customGhost
+  id: GhostThemeLizardWizard
+  name: "Ящер-волшебник"
+  description: "Призрак древнего ящера-волшебника"
+  price: 100
+  sprite: _Mini/Ghosts/LIZARDWIZARD.rsi
+  ghostName: "Ящер-волшебник"
+
+- type: customGhost
+  id: GhostThemeNoMad
+  name: "Ноу Мэд"
+  description: "Загадочный призрак"
+  price: 50
+  sprite: _Mini/Ghosts/no_mad.rsi
+  ghostName: "Ноу Мэд"
+
+- type: customGhost
+  id: GhostThemePuroSlavKing
+  name: "Славянский король"
+  description: "Величественный призрак с королевской осанкой"
+  price: 150
+  sprite: _Mini/Ghosts/PuroSlavKing.rsi
+  ghostName: "Славянский король"
+
+- type: customGhost
+  id: GhostThemeScituzer2
+  name: "Сцитузер"
+  description: "Загадочный призрак"
+  price: 75
+  sprite: _Mini/Ghosts/scituzer2.rsi
+  ghostName: "Сцитузер"
+
+- type: customGhost
+  id: GhostThemeTrest100
+  name: "Трест"
+  description: "Могучий призрак"
+  price: 100
+  sprite: _Mini/Ghosts/trest100.rsi
+  ghostName: "Трест"
+
+- type: customGhost
+  id: GhostThemeVetochka
+  name: "Веточка"
+  description: "Нежный призрак"
+  price: 75
+  sprite: _Mini/Ghosts/Vetochka.rsi
+  ghostName: "Веточка"
+
+- type: customGhost
+  id: GhostThemeWendor
+  name: "Вендор"
+  description: "Призрак торгового автомата"
+  price: 100
+  sprite: _Mini/Ghosts/wendor.rsi
+  ghostName: "Вендор"
+
+- type: customGhost
+  id: GhostThemeYourmommy
+  name: "Твоя мама"
+  description: "Грозный призрак"
+  price: 200
+  sprite: _Mini/Ghosts/yourmommy.rsi
+  ghostName: "Твоя мама"
+
