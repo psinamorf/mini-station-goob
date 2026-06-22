@@ -145,6 +145,7 @@ public sealed class CustomGhostSystem : EntitySystem
     private async void OnShopSelect(GhostShopSelectRequestEvent msg, EntitySessionEventArgs args)
     {
         var userId = args.SenderSession.UserId;
+        var themeId = msg.ThemeId == "GhostThemeDefault" ? null : msg.ThemeId;
         var tokens = await _db.GetPlayerAntagTokens(userId.UserId);
         string? oldSelectedThemeId = null;
 
@@ -157,16 +158,16 @@ public sealed class CustomGhostSystem : EntitySystem
             }
         }
 
-        if (oldSelectedThemeId != null && msg.ThemeId == null)
+        if (oldSelectedThemeId != null && themeId == null)
         {
             await _db.SetPlayerAntagTokenAmount(userId.UserId, oldSelectedThemeId, 0);
         }
-        else if (msg.ThemeId != null)
+        else if (themeId != null)
         {
             if (oldSelectedThemeId != null)
                 await _db.SetPlayerAntagTokenAmount(userId.UserId, oldSelectedThemeId, 0);
 
-            var selectTokenId = $"ghost-theme:{msg.ThemeId}:selected";
+            var selectTokenId = $"ghost-theme:{themeId}:selected";
             await _db.SetPlayerAntagTokenAmount(userId.UserId, selectTokenId, 1);
         }
 
@@ -179,23 +180,23 @@ public sealed class CustomGhostSystem : EntitySystem
         {
             if (token.TokenId.StartsWith("ghost-theme:"))
             {
-                var themeId = token.TokenId["ghost-theme:".Length..];
+                var tId = token.TokenId["ghost-theme:".Length..];
 
-                if (themeId.EndsWith(":selected"))
+                if (tId.EndsWith(":selected"))
                 {
-                    selectedTheme = themeId.Replace(":selected", "");
+                    selectedTheme = tId.Replace(":selected", "");
                 }
                 else
                 {
-                    ownedThemes.Add(themeId);
+                    ownedThemes.Add(tId);
                 }
             }
         }
 
         SendShopState(args.SenderSession, balanceToken?.Amount ?? 0, ownedThemes, selectedTheme);
 
-        if (msg.ThemeId != null && args.SenderSession.AttachedEntity is { Valid: true } ent && HasComp<GhostComponent>(ent))
-            ApplyTheme(ent, msg.ThemeId);
+        if (themeId != null && args.SenderSession.AttachedEntity is { Valid: true } ent && HasComp<GhostComponent>(ent))
+            ApplyTheme(ent, themeId);
     }
 
     private async void SendShopState(ICommonSession session)
@@ -207,11 +208,14 @@ public sealed class CustomGhostSystem : EntitySystem
     private void SendShopState(ICommonSession session, int balance, List<string>? ownedThemes = null, string? selectedTheme = null)
     {
         var themes = _prototypeManager.EnumeratePrototypes<CustomGhostPrototype>()
-            .Where(p => p.Price > 0)
+            .Where(p => p.Price >= 0)
+            .OrderBy(p => p.Order)
             .Select(proto =>
             {
-                var owned = ownedThemes?.Contains(proto.ID) ?? false;
-                var selected = selectedTheme == proto.ID;
+                var owned = proto.Price == 0 || (ownedThemes?.Contains(proto.ID) ?? false);
+                var selected = proto.Price == 0
+                    ? selectedTheme == null
+                    : selectedTheme == proto.ID;
                 return new GhostThemeEntry(
                     proto.ID,
                     proto.Name,

@@ -32,6 +32,9 @@ public sealed class CustomGhostPrototype : IPrototype
     [DataField("price")]
     public int Price { get; } = 0;
 
+    [DataField("order")]
+    public int Order { get; } = 0;
+
     [DataField("name")]
     public string Name { get; } = string.Empty;
 

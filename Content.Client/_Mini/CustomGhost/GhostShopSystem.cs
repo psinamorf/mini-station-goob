@@ -29,7 +29,7 @@ public sealed class GhostShopSystem : EntitySystem
     {
         RaiseNetworkEvent(new GhostShopOpenRequestEvent());
         _window?.Close();
-        _window = new GhostShopWindow(_proto, _resourceCache, this);
+            _window = new GhostShopWindow(this);
         _window.OpenCentered();
     }
 
@@ -40,6 +40,8 @@ public sealed class GhostShopSystem : EntitySystem
 
     public void RequestSelect(string? themeId)
     {
+        if (themeId == "GhostThemeDefault")
+            themeId = null;
         RaiseNetworkEvent(new GhostShopSelectRequestEvent(themeId));
     }
 
@@ -60,7 +62,7 @@ public sealed class GhostShopSystem : EntitySystem
         if (_window == null || !_window.IsOpen)
         {
             _window?.Close();
-            _window = new GhostShopWindow(_proto, _resourceCache, this);
+        _window = new GhostShopWindow(this);
             _window.OpenCentered();
         }
 

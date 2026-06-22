@@ -1,66 +1,21 @@
 # Кастомные темы призраков, покупаемые за монеты в магазине призраков
+# Price = 0 = обычный призрак (всегда доступен)
+# Price > 0 = покупается в магазине
 
 - type: customGhost
-  id: default
-  name: "Стандартный"
+  id: GhostThemeDefault
+  name: "Обычный"
+  description: "Обычный призрак"
   price: 0
-  entity: MobObserver
-  sprite: /Mobs/Ghosts/ghost_human.rsi
-  ghostName: "Призрак"
-
-# - type: customGhost
-#   id: GhostThemeMouse
-#   name: "Мышь"
-#   description: "Серый и незаметный"
-#   price: 25
-#   sprite: _Mini/Ghosts/mouse.rsi
-#   ghostName: "Мышь"
-
-# - type: customGhost
-#   id: GhostThemeFrog
-#   name: "Лягушка"
-#   description: "Прыгучий дух болота"
-#   price: 35
-#   sprite: _Mini/Ghosts/frog.rsi
-#   ghostName: "Лягушка"
-
-# - type: customGhost
-#   id: GhostThemeRooster
-#   name: "Петух"
-#   description: "Кричит даже после смерти"
-#   price: 35
-#   sprite: _Mini/Ghosts/rooster.rsi
-#   ghostName: "Петух"
-
-# - type: customGhost
-#   id: GhostThemeKitty
-#   name: "Котёнок"
-#   description: "Милый дух усатого друга"
-#   price: 50
-#   sprite: _Mini/Ghosts/kitty.rsi
-#   ghostName: "Котёнок"
-
-# - type: customGhost
-#   id: GhostThemeIan
-#   name: "Иан"
-#   description: "Верный корги"
-#   price: 50
-#   sprite: _Mini/Ghosts/ian.rsi
-#   ghostName: "Иан"
-
-# - type: customGhost
-#   id: GhostThemeSkeleton
-#   name: "Скелет"
-#   description: "Костяной призрак"
-#   price: 75
-#   sprite: _Mini/Ghosts/skeleton.rsi
-#   ghostName: "Скелет"
+  order: 0
+  sprite: Mobs/Ghosts/ghost_human.rsi
 
 - type: customGhost
   id: GhostThemeDiscoCat
   name: "Диско-кот"
   description: "And i dance-dance-dance..."
   price: 50
+  order: 1
   sprite: _Mini/Ghosts/discocat.rsi
   ghostName: "Диско-кот"
 
@@ -69,6 +24,7 @@
   name: "Попугай"
   description: "Говорящий призрак"
   price: 100
+  order: 2
   sprite: _Mini/Ghosts/parrot.rsi
   ghostName: "Попугай"
 
@@ -77,6 +33,7 @@
   name: "Белый"
   description: "Чистый и холодный"
   price: 100
+  order: 3
   sprite: _Mini/Ghosts/white_ghost_human.rsi
   ghostName: "Белый"
 
@@ -85,6 +42,7 @@
   name: "Красный"
   description: "Алый призрак"
   price: 125
+  order: 4
   sprite: _Mini/Ghosts/red_ghost_human.rsi
   ghostName: "Красный"
 
@@ -93,6 +51,7 @@
   name: "Розовый"
   description: "Нежный розовый дух"
   price: 125
+  order: 5
   sprite: _Mini/Ghosts/pink_ghost_human.rsi
   ghostName: "Розовый"
 
@@ -101,22 +60,16 @@
   name: "Фиолетовый"
   description: "Королевский цвет"
   price: 125
+  order: 6
   sprite: _Mini/Ghosts/purple_ghost_human.rsi
   ghostName: "Фиолетовый"
-
-- type: customGhost
-  id: GhostThemeWhite
-  name: "Белый"
-  description: "Чистый и холодный"
-  price: 100
-  sprite: _Mini/Ghosts/white_ghost_human.rsi
-  ghostName: "Белый"
 
 - type: customGhost
   id: GhostThemeSilver
   name: "Серебряный"
   description: "Лунное сияние"
   price: 175
+  order: 7
   sprite: _Mini/Ghosts/silver_ghost_human.rsi
   ghostName: "Серебряный"
 
@@ -125,6 +78,7 @@
   name: "Золотой"
   description: "Яркий и дорогой"
   price: 225
+  order: 8
   sprite: _Mini/Ghosts/gold_ghost_human.rsi
   ghostName: "Золотой"
 
@@ -133,6 +87,7 @@
   name: "Платиновый"
   description: "Элитный дух"
   price: 300
+  order: 9
   sprite: _Mini/Ghosts/platinum_ghost_human.rsi
   ghostName: "Платиновый"
 
@@ -141,6 +96,7 @@
   name: "Радужный"
   description: "Сияет всеми цветами"
   price: 350
+  order: 10
   sprite: _Mini/Ghosts/rainbow.rsi
   ghostName: "Радужный"
 
@@ -149,6 +105,7 @@
   name: "Пламя"
   description: "Горящий призрак"
   price: 400
+  order: 11
   sprite: _Mini/Ghosts/fire.rsi
   ghostName: "Пламя"
 
@@ -157,5 +114,6 @@
   name: "Огненный"
   description: "Пылающий дух"
   price: 500
+  order: 12
   sprite: _Mini/Ghosts/blazeit.rsi
   ghostName: "Огненный"
