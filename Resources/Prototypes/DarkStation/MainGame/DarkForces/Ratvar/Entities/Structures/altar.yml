@@ -63,6 +63,7 @@
   graph: RatvarAltarGraph
   startNode: start
   targetNode: altar
+  hide: true
   category: "Культ Ратвара"
   objectType: Structure
   entityWhitelist:
