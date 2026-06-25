@@ -87,7 +87,12 @@ public sealed class RatvarAltarSystem : EntitySystem
             switch (component.Type)
             {
                 case AltarActiveType.Convert:
-                    if (!TryComp<ActorComponent>(uid, out var actor)) return;
+                    if (!UserValidToConvert(target) || !TryComp<ActorComponent>(target, out var actor))
+                    {
+                        ToIdleState((uid, component));
+                        continue;
+                    }
+
                     _antag.ForceMakeAntag<RatvarRuleComponent>(actor.PlayerSession, "Ratvar");
                     _progressSystem.TryRequestChangePower(PowerForConvert);
                     ToIdleState((uid, component));

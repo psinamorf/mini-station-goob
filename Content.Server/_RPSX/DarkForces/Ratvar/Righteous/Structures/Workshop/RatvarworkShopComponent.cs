@@ -14,5 +14,5 @@ public sealed partial class RatvarworkShopComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<MaterialPrototype>))]
-    public string RequiredMaterial = "BrassPlasteel";
+    public string RequiredMaterial = "Brass";
 }
