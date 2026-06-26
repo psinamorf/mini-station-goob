@@ -1,8 +1,8 @@
 ﻿- type: entity
   id: RatvarIntegrationCog
   parent: BaseItem
-  name: "Шестерня интеграции"
-  description: "Инструмент праведников Ратвара."
+  name: ent-RatvarIntegrationCog
+  description: ent-RatvarIntegrationCog.desc
   suffix: Ratvar
   components:
   - type: Sprite

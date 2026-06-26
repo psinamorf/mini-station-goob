@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: RatvarPortal
-  name: "Портал Ратвара"
-  description: "До прихода Ратвара осталось совсем чуть-чуть..."
+  name: ent-RatvarPortal
+  description: ent-RatvarPortal.desc
   suffix: Ratvar
   components:
   - type: Transform

@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: MobRatvarMarauder
-  name: "Заводной мародёр"
-  description: "Пахнет латунью"
+  name: ent-MobRatvarMarauder
+  description: ent-MobRatvarMarauder.desc
   suffix: Ratvar
   components:
   - type: Actions

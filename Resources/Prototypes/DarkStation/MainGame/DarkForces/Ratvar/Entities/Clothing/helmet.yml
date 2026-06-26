@@ -1,8 +1,8 @@
 ﻿- type: entity
   id: ClothingHeadHelmetRatvar
   parent: ClothingHeadBase
-  name: "Медный шлем"
-  description: "Наверное он тяжелый..."
+  name: ent-ClothingHeadHelmetRatvar
+  description: ent-ClothingHeadHelmetRatvar.desc
   suffix: Ratvar
   components:
   - type: Sprite
