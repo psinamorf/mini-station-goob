@@ -1,8 +1,8 @@
 - type: entity
   id: RatvarSlab
   parent: BaseItem
-  name: "Заводная плита"
-  description: "Инструмент праведников Ратвара."
+  name: ent-RatvarSlab
+  description: ent-RatvarSlab.desc
   suffix: Ratvar
   components:
   - type: Sprite
@@ -29,31 +29,31 @@
   - type: RatvarEnchantmentable
     enchantments:
     - action: ActionRatvarSlabStun
-      name: "Оглушение"
+      name: enchant-name-RatvarSlab-0
       icon:
         sprite: DarkStation/MainGame/DarkForces/Ratvar/Weapons/clockwork_slab.rsi
         state: clock_slab_overlay_1
       visuals: Stun
     - action: ActionRatvarSlabDoors
-      name: "Создание прохода"
+      name: enchant-name-RatvarSlab-1
       icon:
         sprite: DarkStation/MainGame/DarkForces/Ratvar/Weapons/clockwork_slab.rsi
         state: clock_slab_overlay_2
       visuals: Doors
     - action: ActionRatvarSlabWalls
-      name: "Терраформ"
+      name: enchant-name-RatvarSlab-2
       icon:
         sprite: DarkStation/MainGame/DarkForces/Ratvar/Weapons/clockwork_slab.rsi
         state: clock_slab_overlay_3
       visuals: Walls
     - action: ActionRatvarSlabTeleport
-      name: "Телепортация"
+      name: enchant-name-RatvarSlab-3
       icon:
         sprite: DarkStation/MainGame/DarkForces/Ratvar/Weapons/clockwork_slab.rsi
         state: clock_slab_overlay_4
       visuals: Teleport
     - action: ActionRatvarSlabHidings
-      name: "Сокрытие шестерней"
+      name: enchant-name-RatvarSlab-4
       icon:
         sprite: DarkStation/MainGame/DarkForces/Ratvar/Weapons/clockwork_slab.rsi
         state: clock_slab_overlay_6
@@ -70,8 +70,8 @@
 - type: entity
   parent: BaseAction
   id: ActionRatvarSlabStun
-  name: "Оглушение"
-  description: "Оглушает цель"
+  name: action-name-RatvarSlabStun
+  description: action-desc-RatvarSlabStun
   components:
   - type: Action
     itemIconStyle: BigItem
@@ -90,8 +90,8 @@
 - type: entity
   parent: BaseAction
   id: ActionRatvarSlabDoors
-  name: "Создание прохода"
-  description: "Открывает двери и шкафы"
+  name: action-name-RatvarSlabDoors
+  description: action-desc-RatvarSlabDoors
   components:
   - type: Action
     itemIconStyle: BigItem
@@ -110,8 +110,8 @@
 - type: entity
   parent: BaseAction
   id: ActionRatvarSlabWalls
-  name: "Терраформ"
-  description: "При использовании на ОБЫЧНОЙ стене, делает из неё фальшивую стену"
+  name: action-name-RatvarSlabWalls
+  description: action-desc-RatvarSlabWalls
   components:
   - type: Action
     itemIconStyle: BigItem
@@ -130,8 +130,8 @@
 - type: entity
   parent: BaseAction
   id: ActionRatvarSlabTeleport
-  name: "Телепортация"
-  description: "Телепортация к алтарю или видимой области"
+  name: action-name-RatvarSlabTeleport
+  description: action-desc-RatvarSlabTeleport
   components:
   - type: Action
     itemIconStyle: BigItem
@@ -144,8 +144,8 @@
 - type: entity
   parent: BaseAction
   id: ActionRatvarSlabHidings
-  name: "Сокрытие шестерней"
-  description: "Маскирует постройки праведников под кусты и шкафы"
+  name: action-name-RatvarSlabHidings
+  description: action-desc-RatvarSlabHidings
   components:
   - type: Action
     itemIconStyle: BigItem

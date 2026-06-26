@@ -1,5 +1,5 @@
 ﻿- type: entity
-  name: "Ратвар"
+  name: ent-MobRatvarDark
   id: MobRatvarDark
   parent: BaseMob
   suffix: Ratvar
@@ -49,9 +49,9 @@
     allowMovement: true
     allowSpeech: true
     makeSentient: true
-    name: "Ратвар"
-    description: "Освобожденный из заточения бог"
-    rules: "Убейте всех, кроме праведников, проявите свой гнев!"
+    name: ghost-role-name-RatvarDark
+    description: ghost-role-desc-RatvarDark
+    rules: ghost-role-rules-RatvarDark
   - type: GhostTakeoverAvailable
   - type: PointLight
     enabled: true

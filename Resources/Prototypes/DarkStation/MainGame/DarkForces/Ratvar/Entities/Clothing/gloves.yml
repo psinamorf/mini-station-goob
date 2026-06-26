@@ -1,8 +1,8 @@
 ﻿- type: entity
   id: ClothingHandsRatvar
   parent: ClothingHandsBase
-  name: "медные рукавицы"
-  description: "Тяжёлые медные руковицы"
+  name: ent-ClothingHandsRatvar
+  description: ent-ClothingHandsRatvar.desc
   suffix: Ratvar
   components:
   - type: Sprite

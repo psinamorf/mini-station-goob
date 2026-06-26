@@ -1,8 +1,8 @@
 ﻿- type: entity
   id: ClothingOuterRobesRatvar
   parent: ClothingOuterBase
-  name: "Одеяние праведников"
-  description: "Ничем не примечательные одеяния"
+  name: ent-ClothingOuterRobesRatvar
+  description: ent-ClothingOuterRobesRatvar.desc
   suffix: Ratvar
   components:
   - type: Sprite

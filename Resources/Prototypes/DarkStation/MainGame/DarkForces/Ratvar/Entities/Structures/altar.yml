@@ -1,8 +1,8 @@
 - type: entity
   id: RatvarAltar
   parent: BaseRatvarStructure
-  name: "Алтарь из шестереней"
-  description: "Странная латунная платформа из вращающихся шестерней. Она требует что-то в обмен на…"
+  name: ent-RatvarAltar
+  description: ent-RatvarAltar.desc
   suffix: Ratvar
   components:
   - type: Anchorable
@@ -64,7 +64,7 @@
   startNode: start
   targetNode: altar
   hide: true
-  category: "Культ Ратвара"
+  category: craft-category-RatvarConstruction
   objectType: Structure
   entityWhitelist:
     components:

@@ -1,7 +1,7 @@
 ﻿- type: entity
   id: RatvarHammer
   parent: Sledgehammer
-  name: "Заводной молот"
+  name: ent-RatvarHammer
   suffix: Ratvar
   components:
   - type: Sharp
@@ -35,7 +35,7 @@
   - type: RatvarEnchantmentable
     enchantments:
     - action: RatvarHammmerKnockOff
-      name: "Отбрасывание"
+      name: enchant-name-RatvarHammer-0
       icon:
         sprite: DarkStation/MainGame/DarkForces/Ratvar/Weapons/clock_hammer.rsi
         state: icon-yellow
@@ -45,8 +45,8 @@
 - type: entity
   parent: BaseAction
   id: RatvarHammmerKnockOff
-  name: "Отбрасывание"
-  description: "После удара (необходимо держать молот в обеих руках) отбросит противника на очень большое расстояние."
+  name: ent-RatvarHammmerKnockOff
+  description: ent-RatvarHammmerKnockOff.desc
   components:
   - type: Action
     itemIconStyle: BigItem

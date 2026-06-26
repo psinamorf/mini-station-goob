@@ -1,7 +1,7 @@
 - type: entity
   id: RatvarBeacon
   parent: BaseRatvarStructure
-  name: "Маяк Вестника"
+  name: ent-RatvarBeacon
   suffix: Ratvar
   components:
   - type: Sprite
@@ -72,7 +72,7 @@
   startNode: start
   targetNode: beacon
   hide: true
-  category: "Культ Ратвара"
+  category: craft-category-RatvarConstruction
   objectType: Structure
   entityWhitelist:
     components:

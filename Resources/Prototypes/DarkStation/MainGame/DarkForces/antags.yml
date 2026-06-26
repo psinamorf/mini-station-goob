@@ -1,7 +1,7 @@
 ﻿#Ratvar
 - type: antag
   id: RatvarRighteous
-  name: "Праведник Ратвара"
+  name: antag-name-RatvarRighteous
   antagonist: true
   setPreference: true
   objective: "Освободите Ратвара из заточения"
