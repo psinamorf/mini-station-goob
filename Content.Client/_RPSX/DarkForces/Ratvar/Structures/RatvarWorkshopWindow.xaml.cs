@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Numerics;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
@@ -12,6 +10,7 @@ using Robust.Client.Graphics;
 using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
+using System.Linq;
 
 namespace Content.Client.RPSX.DarkForces.Ratvar.Structures;
 
@@ -26,7 +25,6 @@ public sealed partial class RatvarWorkshopWindow : FancyWindow
     private readonly SpriteSystem _spriteSystem;
     private readonly HashSet<RatvarCraftCategoryPrototype> _categories;
     private readonly Color _categoryBackgroundColor;
-    private readonly Thickness _defaultMargin;
 
     public RatvarWorkshopWindow()
     {
@@ -35,37 +33,35 @@ public sealed partial class RatvarWorkshopWindow : FancyWindow
 
         _spriteSystem = _entitySystem.GetEntitySystem<SpriteSystem>();
         _categories = _prototype.EnumeratePrototypes<RatvarCraftCategoryPrototype>().ToHashSet();
-        _defaultMargin = new Thickness(8, 8, 8, 8);
 
         Color.TryParse("#25252a80", out _categoryBackgroundColor);
     }
 
     public void UpdateState(RatvarWorkshopUIState state)
     {
-        BrassCount.Text = $"{state.Brass / 100}";
-        PowerCount.Text = $"{state.Power}";
+        var brass = state.Brass / 100;
+        var power = state.Power;
+
+        BrassCount.Text = $"{brass}";
+        PowerCount.Text = $"{power}";
         ProgressState.Text = state.InProgress ? "В работе" : "Готово к работе";
 
-        // Очищаем список
         CraftList.RemoveAllChildren();
-
-        CreateReceipts(state.Brass, state.Power, state.InProgress);
+        CreateReceipts(brass, power, state.InProgress);
     }
 
     private void CreateReceipts(int brass, int power, bool inProgress)
     {
         foreach (var category in _categories)
         {
-            // Заголовок категории
             var categoryLabel = new Label
             {
                 Text = Loc.GetString(category.Name),
                 StyleClasses = { "LabelKeyText" },
-                Margin = _defaultMargin
+                Margin = new Thickness(8, 8, 8, 4)
             };
             CraftList.AddChild(categoryLabel);
 
-            // Разделитель
             var divider = new PanelContainer
             {
                 StyleClasses = { "LowDivider" },
@@ -73,11 +69,12 @@ public sealed partial class RatvarWorkshopWindow : FancyWindow
             };
             CraftList.AddChild(divider);
 
-            // Рецепты категории
             foreach (var receiptProtId in category.Receipts)
             {
                 var receipt = _prototype.Index(receiptProtId);
-                var canCraft = !inProgress && receipt.BrassCost <= brass && receipt.PowerCost <= power;
+                var receiptBrassCost = receipt.BrassCost / 100;
+                var receiptPowerCost = receipt.PowerCost;
+                var canCraft = !inProgress && receiptBrassCost <= brass && receiptPowerCost <= power;
 
                 var receiptPanel = new PanelContainer
                 {
@@ -91,10 +88,9 @@ public sealed partial class RatvarWorkshopWindow : FancyWindow
                 var receiptContainer = new BoxContainer
                 {
                     Orientation = BoxContainer.LayoutOrientation.Horizontal,
-                    Margin = _defaultMargin
+                    Margin = new Thickness(8, 4)
                 };
 
-                // Иконка предмета
                 var textureRect = new TextureRect
                 {
                     Texture = _spriteSystem.Frame0(receipt.Icon),
@@ -104,7 +100,6 @@ public sealed partial class RatvarWorkshopWindow : FancyWindow
                     Margin = new Thickness(0, 0, 8, 0)
                 };
 
-                // Название предмета
                 var button = new Button
                 {
                     Text = Loc.GetString(receipt.Name),
@@ -114,10 +109,9 @@ public sealed partial class RatvarWorkshopWindow : FancyWindow
                     Disabled = !canCraft
                 };
 
-                // Требования
                 var requirementsLabel = new Label
                 {
-                    Text = $"Латунь: {receipt.BrassCost}, Энергия: {receipt.PowerCost}",
+                    Text = $"Латунь: {receiptBrassCost}, Энергия: {receiptPowerCost}",
                     StyleClasses = { StyleBase.StyleClassLabelSubText },
                     Align = Label.AlignMode.Right,
                     Margin = new Thickness(0, 0, 8, 0),
@@ -125,7 +119,6 @@ public sealed partial class RatvarWorkshopWindow : FancyWindow
                     VerticalAlignment = VAlignment.Center
                 };
 
-                // Привязываем переменные для замыкания
                 var currentReceipt = receipt;
                 button.OnPressed += _ =>
                     OnCraftPressed?.Invoke(currentReceipt.EntityProduce,
