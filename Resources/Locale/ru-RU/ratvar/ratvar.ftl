@@ -121,20 +121,6 @@ ent-RatvarBeacon = Маяк Вестника
 ent-RatvarAltar = Алтарь из шестереней
     .desc = Странная латунная платформа из вращающихся шестерней. Она требует что-то в обмен на...
 
-# Construction
-construction-recipe-clockwork-wall = Стена часовых
-construction-recipe-clockwork-wall-desc = Построить стену из латуни. Требуется приверженность Ратвару.
-construction-recipe-pinion-airlock = Шестерёнчатый шлюз
-construction-recipe-pinion-airlock-desc = Построить дверь из латуни. Требуется приверженность Ратвару.
-construction-recipe-pinion-airlock-glass = Стеклянный шестерёнчатый шлюз
-construction-recipe-pinion-airlock-glass-desc = Построить стеклянную дверь из латуни. Требуется приверженность Ратвару.
-construction-recipe-ratvar-beacon = Маяк Вестника
-construction-recipe-ratvar-beacon-desc = Построить маяк, который генерирует энергию, лечит праведников и конвертирует окружение.
-construction-recipe-ratvar-altar = Алтарь Ратвара
-construction-recipe-ratvar-altar-desc = Построить алтарь для конвертации заблудших и призыва Ратвара.
-construction-recipe-ratvar-workshop = Мастерская Ратвара
-construction-recipe-ratvar-workshop-desc = Построить мастерскую для создания оружия и брони праведников.
-
 # Craft
 craft-category-RatvarWeapon = Оружие
 craft-category-RatvarArmor = Броня
