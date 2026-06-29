@@ -1,0 +1,10 @@
+- type: entity
+  parent: ClothingHandsGlovesCombat
+  id: ClothingHandsGlovesBlueshield
+  name: боевые перчатки
+  description: Боевые перчатки, предоставляющие носителю удобство и комфорт при использовании. Эти используются различными спецслужбами.
+  components:
+  - type: Sprite
+    sprite: _Mini/Clothing/Gloves/blueshield_gloves.rsi
+  - type: Clothing
+    sprite: _Mini/Clothing/Gloves/blueshield_gloves.rsi

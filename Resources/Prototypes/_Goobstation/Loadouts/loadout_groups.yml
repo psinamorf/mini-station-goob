@@ -1000,6 +1000,7 @@
   - BlueshieldOfficerInnerBlueshieldSuit
   - BlueshieldOfficerInnerBlueshieldSkirt
   - BlueshieldOfficerInnerBlueshieldShirt
+  - BlueshieldOfficerInnerBlueshieldSuitBlack
 
 - type: loadoutGroup
   id: BlueshieldOfficerBelt
@@ -1079,6 +1080,7 @@
   maxLimit: 1
   loadouts:
   - CombatGloves
+  - CombatGlovesAlt
 
 - type: loadoutGroup
   id: BlueshieldOfficerEyes
