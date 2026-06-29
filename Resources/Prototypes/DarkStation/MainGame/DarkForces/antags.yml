@@ -1,13 +1,14 @@
 ﻿#Ratvar
 - type: antag
   id: RatvarRighteous
-  name: "Праведник Ратвара"
+  name: antag-name-RatvarRighteous
   antagonist: true
   setPreference: true
   objective: "Освободите Ратвара из заточения"
   requirements:
   - !type:OverallPlaytimeRequirement
-    time: 72000 # 20h (need good RolePlay)
+    time: 18000 # 5h
+  guides: [ RatvarCult ]
 
 - type: startingGear
   id: RatvarWarriorGear

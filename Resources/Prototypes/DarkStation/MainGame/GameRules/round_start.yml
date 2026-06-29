@@ -18,7 +18,7 @@
       lateJoinAdditional: true
       briefing:
         text: ratvar-righteous-briefing
-        color: CornflowerBlue
+        color: "#ba7b00"
         sound: "/Audio/DarkStation/DarkForces/Ratvar/clockcult.ogg"
       components:
       - type: RatvarRighteous
@@ -39,10 +39,11 @@
 - type: entity
   parent: BaseMindRoleAntag
   id: MindRoleRatvar
-  name: Ratvar Cultist Role
+  name: mind-role-name-ratvar
   #  description: mind-role-thief-description
   components:
   - type: MindRole
     antagPrototype: RatvarRighteous
     roleType: TeamAntagonist
+    subtype: antag-name-RatvarRighteous
   - type: RatvarRole

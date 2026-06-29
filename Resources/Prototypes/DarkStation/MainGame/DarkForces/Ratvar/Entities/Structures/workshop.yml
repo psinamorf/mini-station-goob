@@ -1,7 +1,7 @@
 - type: entity
   id: RatvarWorkshop
   parent: BaseRatvarStructure
-  name: "Мастерская Ратвара"
+  name: ent-RatvarWorkshop
   suffix: Ratvar
   components:
   - type: Anchorable
@@ -56,7 +56,7 @@
   startNode: start
   targetNode: workshop
   hide: true
-  category: "Культ Ратвара"
+  category: craft-category-RatvarConstruction
   objectType: Structure
   entityWhitelist:
     components:

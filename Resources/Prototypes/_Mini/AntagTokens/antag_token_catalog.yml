@@ -119,6 +119,21 @@
       minimumTimeFromRoundStart: 900
       freeMinimumSponsorLevel: 1
 
+    - id: borer
+      nameLocKey: cortical-borer-ghostrole-name
+      descriptionLocKey: antag-store-role-rat-king-description
+      cost: 4
+      iconPath: /Textures/_Mini/Interface/Antags/borer.png
+      mode: GhostRule
+      ghostAutoJoinEntityProto: SpawnPointGhostCorticalBorer
+      ghostRulesLocKey: ghost-role-information-freeagent-rules
+      gameRuleId: CorticalBorerInfestation
+      tagLocKey: antag-token-window-tag-ghost
+      minimumPlayers: 15
+      requiresInRound: true
+      minimumTimeFromRoundStart: 300
+      freeMinimumSponsorLevel: 2
+
     - id: bingle
       nameLocKey: antag-store-role-bingle-name
       descriptionLocKey: antag-store-role-bingle-description
@@ -198,6 +213,21 @@
       antagId: CosmicAntagCultist
       gameRuleId: CosmicCult
       requiresPresetGameRuleId: CosmicCult
+      tagLocKey: antag-token-window-tag-queue
+      minimumPlayers: 20
+      requiresPreRoundLobby: true
+      freeMinimumSponsorLevel: 3
+      jobBlacklist: [Chaplain]
+
+    - id: ratvar_cult
+      nameLocKey: antag-store-role-ratvar-cult-name
+      descriptionLocKey: antag-store-role-ratvar-cult-description
+      cost: 6
+      iconPath: /Textures/_Mini/Interface/Antags/ratvar_cult.png
+      mode: LobbyDeposit
+      antagId: RatvarRighteous
+      gameRuleId: RatvarRighteous
+      requiresPresetGameRuleId: RatvarRighteous
       tagLocKey: antag-token-window-tag-queue
       minimumPlayers: 20
       requiresPreRoundLobby: true

@@ -1,8 +1,8 @@
 ﻿- type: entity
   id: MobRatvarCyborg
   parent: BaseMob
-  name: "Латунник"
-  description: "Наблюдать латунника в движении — услада для глаз"
+  name: ent-MobRatvarCyborg
+  description: ent-MobRatvarCyborg.desc
   suffix: Ratvar
   components:
   - type: Reactive
@@ -220,7 +220,7 @@
 - type: entity
   id: RatvarBorgWeaponModule
   parent: [ BaseBorgModule, BaseProviderBorgModule ]
-  name: "Модуль копья Ратвара"
+  name: ent-RatvarBorgWeaponModule
   components:
   - type: Sprite
     layers:

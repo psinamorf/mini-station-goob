@@ -16,6 +16,8 @@ public sealed partial class SlimeLatchEvent : EntityTargetActionEvent
     public float Damage = 5;
 }
 
+public sealed partial class EatCorpseEvent : EntityTargetActionEvent;
+
 public sealed partial class XenoVacEvent : EntityTargetActionEvent;
 
 public sealed partial class XenoVacClearEvent : InstantActionEvent;
@@ -35,8 +37,11 @@ public sealed partial class SlimeTamedEvent : EntityEventArgs
         Tamer = tamer;
     }
 }
+[Serializable, NetSerializable]
+public sealed partial class EatCorpseDoAfterEvent : SimpleDoAfterEvent;
 
 /// <summary>
 /// rised after mitosis completed, but before parent slime deletion, directed to parent slime
 /// </summary>
+[Serializable, NetSerializable]
 public sealed partial class SlimeMitosisEvent : EntityEventArgs;

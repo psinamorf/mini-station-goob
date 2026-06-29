@@ -1,8 +1,8 @@
 ﻿- type: entity
   id: ClothingShoesRatvar
   parent: ClothingShoesBase
-  name: "Гусеницы"
-  description: "Тяжёлые сапоги"
+  name: ent-ClothingShoesRatvar
+  description: ent-ClothingShoesRatvar.desc
   suffix: Ratvar
   components:
   - type: Sprite

@@ -1,8 +1,8 @@
 ﻿- type: entity
   id: RatvarShard
   parent: BaseItem
-  name: "Странный осколок"
-  description: "Одноразовый кристалл"
+  name: ent-RatvarShard
+  description: ent-RatvarShard.desc
   suffix: Ratvar
   components:
   - type: Sprite
@@ -22,13 +22,13 @@
   - type: RatvarEnchantmentable
     enchantments:
     - action: RatvarShardReconstruct
-      name: "Реконструкция"
+      name: enchant-name-RatvarShard-0
       icon:
         sprite: DarkStation/MainGame/DarkForces/Ratvar/Items/shard.rsi
         state: shard_overlay_1
       visuals: Reconstruct
     - action: RatvarShardEmp
-      name: "Электромагнитный импульс"
+      name: enchant-name-RatvarShard-1
       icon:
         sprite: DarkStation/MainGame/DarkForces/Ratvar/Items/shard.rsi
         state: shard_overlay_2
@@ -42,8 +42,8 @@
 - type: entity
   parent: BaseAction
   id: RatvarShardReconstruct
-  name: "Реконструкция"
-  description: "В радиусе 4 плиток превращает всех киборгов в латунников, меняя стены и полы на латунные версии."
+  name: ent-RatvarShardReconstruct
+  description: ent-RatvarShardReconstruct.desc
   components:
   - type: Action
     itemIconStyle: BigItem
@@ -54,8 +54,8 @@
 - type: entity
   parent: BaseAction 
   id: RatvarShardEmp
-  name: "Электромагнитный импульс"
-  description: "В радиусе 4 плиток испускает сильный ЭМИ. В радиусе 6 плиток — слабый ЭМИ."
+  name: ent-RatvarShardEmp
+  description: ent-RatvarShardEmp.desc
   components:
   - type: Action
     itemIconStyle: BigItem
