@@ -34,8 +34,8 @@
 - type: entity
   parent: ClothingShoesBootsMagBase
   id: ClothingShoesBootsMagCaptain
-  name: магнитные ботинки капитана
-  description: Эксклюзиная версия магнитных ботинок для капитанов станций Нанотрайзен. Теперь без замедления!
+  name: магнитные сапоги капитана
+  description: Эксклюзивная версия магнитных сапоги для капитанов станций Нанотрайзен. Теперь без замедления!
   components:
   - type: Sprite
     sprite: _Mini/Clothing/Shoes/Boots/captain_magboots.rsi
@@ -49,8 +49,8 @@
 - type: entity
   parent: ClothingShoesBootsMagBase
   id: ClothingShoesBootsMagBlueshield
-  name: магнитные ботинки офицера синий щит
-  description: Эксклюзиная версия магнитных ботинок для офицеров синий щит.
+  name: магнитные сапоги офицера Синего Щита
+  description: Эксклюзивная версия магнитных сапог для офицеров Синего Щита.
   components:
   - type: Sprite
     sprite: _Mini/Clothing/Shoes/Boots/blueshield_magboots.rsi
@@ -58,5 +58,5 @@
   - type: Clothing
     sprite: _Mini/Clothing/Shoes/Boots/blueshield_magboots.rsi
   - type: ClothingSpeedModifier
-    walkModifier: 0.95
-    sprintModifier: 0.95
+    walkModifier: 0.9
+    sprintModifier: 0.9

@@ -20,4 +20,4 @@
   - type: Hypospray
     onlyAffectsMobs: false
   - type: UseDelay
-    delay: 1.0
+    delay: 1.75
