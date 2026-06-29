@@ -440,6 +440,7 @@
     state: sheath-rapier
   content:
     - BlueshieldRapier
+    - ClothingBeltSheathBlueshield
 
 # Blueshield hardsuits
 

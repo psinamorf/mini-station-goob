@@ -61,11 +61,3 @@
           tags:
           - CaptainSabre
   - type: Appearance
-
-- type: entity
-  parent: ClothingBeltSheathBlueshield
-  id: ClothingBeltSheathBlueshieldFilled
-  components:
-  - type: StorageFill
-    contents:
-      - id: BlueshieldRapier
