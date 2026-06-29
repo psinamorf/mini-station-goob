@@ -376,13 +376,13 @@
 
 - type: selectableSet
   id: BSORevolverSet
-  name: Пулемёт "Защитник"
-  description: Передовое энергетическое оружие с расширенным боезапасом. Имеет слабый самозаряд.
+  name: Энергетический револьвер EG-4
+  description: Высокоэффективный энергетический револьвер, способный стрелять различными зарядами в зависимости от источника питания.
   sprite:
-    sprite: /Textures/_Mini/Objects/Weapons/Guns/LMGs/krio_gun.rsi
+    sprite: _Goobstation/Objects/Weapons/Guns/Battery/erevolver.rsi
     state: icon
   content:
-    - WeaponMiniMachineGun
+    - ClothingBeltHolsterFilledBlueshield
 
 - type: selectableSet
   id: BSOCQCSet
@@ -420,6 +420,26 @@
     state: icon
   content:
     - ClothingBeltMilitaryWebbingBSOFilled
+
+- type: selectableSet
+  id: BSOMachineGunSet
+  name: Пулемёт "Защитник"
+  description: Передовое энергетическое оружие с расширенным боезапасом. Имеет слабый самозаряд.
+  sprite:
+    sprite: /Textures/_Mini/Objects/Weapons/Guns/LMGs/krio_gun.rsi
+    state: icon
+  content:
+    - WeaponMiniMachineGun
+
+- type: selectableSet
+  id: BSORapierSet
+  name: Преторианская рапира
+  description: Качественный клинок, изготовленный для офицеров Синего Щита.
+  sprite:
+    sprite: _Mini/Clothing/Belt/Sheath.rsi
+    state: sheath-rapier
+  content:
+    - BlueshieldRapier
 
 # Blueshield hardsuits
 

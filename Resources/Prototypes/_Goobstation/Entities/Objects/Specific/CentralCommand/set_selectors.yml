@@ -31,6 +31,8 @@
     - BSOCQCSet
     - BSOChesterSet
     - BSOSyringeSet
+    - BSOMachineGunSet
+    - BSORapierSet
     maxSelectedSets: 2
 
 

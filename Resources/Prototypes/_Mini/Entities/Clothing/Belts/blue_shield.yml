@@ -29,3 +29,43 @@
     sprite: _Mini/Clothing/Belt/webbing_blueshield.rsi
   - type: Clothing
     sprite: _Mini/Clothing/Belt/webbing_blueshield.rsi
+
+- type: entity
+  parent: [ClothingBeltBase, ClothingSlotBase, BaseCentcommContraband]
+  id: ClothingBeltSheathBlueshield
+  name: ножны рапиры
+  description: Ножны, выполненные в тёмных тонах с голубыми акцентами, для изящной рапиры.
+  components:
+  - type: Sprite
+    sprite: _Mini/Clothing/Belt/Sheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: _Mini/Clothing/Belt/Sheath.rsi
+  - type: Item
+    size: Ginormous
+  - type: ItemSlots
+    slots:
+      item:
+        name: rapier
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - CaptainSabre
+  - type: ItemMapper
+    mapLayers:
+      sheath-rapier:
+        whitelist:
+          tags:
+          - CaptainSabre
+  - type: Appearance
+
+- type: entity
+  parent: ClothingBeltSheathBlueshield
+  id: ClothingBeltSheathBlueshieldFilled
+  components:
+  - type: StorageFill
+    contents:
+      - id: BlueshieldRapier
