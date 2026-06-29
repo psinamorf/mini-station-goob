@@ -34,6 +34,7 @@ public sealed class RatvarRuleSystem : GameRuleSystem<RatvarRuleComponent>
         SubscribeLocalEvent<RatvarSpawnStartedEvent>(OnRatvarSpawnStartedEvent);
         SubscribeLocalEvent<RatvarSpawnCanceledEvent>(OnRatvarSpawnCancelEvent);
         SubscribeLocalEvent<RatvarSpawnedEvent>(OnRatvarSpawnedEvent);
+        SubscribeLocalEvent<RoundEndTextAppendEvent>(OnRoundEndTextAppend);
 
         SubscribeLocalEvent<RatvarRuleComponent, AfterAntagEntitySelectedEvent>(OnRighteousSelected);
     }
