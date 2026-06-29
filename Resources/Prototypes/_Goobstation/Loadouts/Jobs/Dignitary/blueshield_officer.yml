@@ -209,6 +209,14 @@
   equipment:
     neck: ClothingNeckEnsembleBlueshield
 
+- type: loadout
+  id: BlueshieldOfficerCoat
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: GrandMasterBSO
+  equipment:
+    neck: ClothingNeckCoatBlueshield
+
 # Mask
 - type: loadout
   id: BlueshieldOfficerMaskLollypop

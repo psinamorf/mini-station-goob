@@ -1029,6 +1029,7 @@
   - BlueshieldOfficerOuterBlueshieldScarf
   - BlueshieldOfficerOuterBlueshieldPoncho
   - BlueshieldOfficerEnsemble
+  - BlueshieldOfficerCoat
 
 - type: loadoutGroup
   id: BlueshieldOfficerMask

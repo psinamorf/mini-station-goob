@@ -35,3 +35,14 @@
     sprite: _Mini/Clothing/Neck/scarfblueshield.rsi
   - type: Clothing
     sprite: _Mini/Clothing/Neck/scarfblueshield.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCentcommContraband]
+  id: ClothingNeckCoatBlueshield
+  name: широкая тёмная шинель
+  description: Шинель, выполненная на заказ в тёмных тонах.
+  components:
+  - type: Sprite
+    sprite: _Mini/Clothing/Neck/wide_blueshield_cloak.rsi
+  - type: Clothing
+    sprite: _Mini/Clothing/Neck/wide_blueshield_cloak.rsi
